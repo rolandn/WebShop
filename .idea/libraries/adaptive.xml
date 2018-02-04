@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="adaptive">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/Microsoft JDBC Driver 6.2 for SQL Server/sqljdbc_6.2/enu/samples/adaptive" />
+      <root url="file://$USER_HOME$/Desktop/Microsoft JDBC Driver 6.2 for SQL Server/sqljdbc_6.2/enu/samples/alwaysencrypted" />
+      <root url="file://$USER_HOME$/Desktop/Microsoft JDBC Driver 6.2 for SQL Server/sqljdbc_6.2/enu/samples/connections" />
+      <root url="file://$USER_HOME$/Desktop/Microsoft JDBC Driver 6.2 for SQL Server/sqljdbc_6.2/enu/samples/datatypes" />
+      <root url="file://$USER_HOME$/Desktop/Microsoft JDBC Driver 6.2 for SQL Server/sqljdbc_6.2/enu/samples/resultsets" />
+      <root url="file://$USER_HOME$/Desktop/Microsoft JDBC Driver 6.2 for SQL Server/sqljdbc_6.2/enu/samples/sparse" />
+    </SOURCES>
+  </library>
+</component>

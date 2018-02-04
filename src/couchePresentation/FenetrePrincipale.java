@@ -1,0 +1,117 @@
+package couchePresentation;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import coucheAccesDB.*;
+import sun.misc.Launcher;
+
+
+public class FenetrePrincipale extends Application {
+    private final int Largeur = 750;
+    private final int Longueur = 500;
+
+    private static Stage Instance;
+
+    private Scene SceneObj;
+    private BorderPane BPane = new BorderPane();
+    private MenuBar BarreMenu = new MenuBar();
+
+    private Menu MenuClient = new Menu("Clients");
+    private MenuItem AjouterClient = new MenuItem("Ajouter un client");
+    private MenuItem SupprimerClient = new MenuItem("Supprimer un client");
+    private MenuItem ModifierClient = new MenuItem("Modifier un client");
+    private MenuItem ListerClient = new MenuItem("Lister les clients");
+
+    private Menu Quitter = new Menu("Quitter");
+    private MenuItem QuitterProgramme = new MenuItem("Quitter le programme");
+
+
+    /**
+     * Méthode statique qui retourne l'objet Stage de la fenêtre principale
+     *
+     * @return l'objet Stage de la fenêtre
+     */
+
+    public static Stage getInstance()
+    {
+        return Instance;
+    }
+
+    /**
+     * Constructeur: il ajoute tous les objets à la fenêtre
+     * @param fenetre: l'objet Stage représentant la fenêtre principale
+     */
+
+    @Override
+    public void start(Stage fenetre) {
+        Instance = fenetre;
+
+        // barre des menus
+        BarreMenu.getMenus().addAll(MenuClient);
+        MenuClient.getItems().addAll(AjouterClient, SupprimerClient, ModifierClient, ListerClient);
+        BarreMenu.prefWidthProperty().bind(fenetre.widthProperty());
+
+        // Actions liées éléments de menu
+
+        AjouterClient.setOnAction(event -> {
+            new AjouterClient();
+        });
+        SupprimerClient.setOnAction(event -> {
+            new SupprimerClient();
+        });
+        ModifierClient.setOnAction(event -> {
+            new ModifierClient();
+        });
+        ListerClient.setOnAction(event -> {
+            new ListerClient();
+        });
+
+        QuitterProgramme.setOnAction(event -> {
+            System.exit(0);
+        });
+
+        // Barre des menus BPaine et Scene
+
+        BPane.setTop(BarreMenu);
+        SceneObj = new Scene(BPane, Largeur, Longueur, Color.WHITE);
+        fenetre.setScene(SceneObj);
+
+        // Style CSS
+
+        SceneObj.getStylesheets().add("couchePresentation/styleMenu.css");
+
+        // Parametrer la fenetre puis l'afficher
+
+        fenetre.setTitle("Backoffice WebShop");
+        fenetre.setResizable(false);
+        fenetre.centerOnScreen();
+        fenetre.show();
+    }
+        /**
+         * Méthode exécutée au démarrage de l'application
+         */
+
+        public static void main(String[] args)
+        {
+            try
+            {
+                FabriqueDAO.getInstance().creerConnexion();
+            }
+            catch (ExceptionAccessBD e)
+            {
+                GererErreur.GererErreurGen("FenêtrePrincipale", "start()", e.getMessage() );
+                System.out.println("problème pour se connecter à la DB");
+                System.exit(0);
+            }
+
+
+        // Charger la fenêtre principale
+
+        launch(args);
+    }
+
+}
