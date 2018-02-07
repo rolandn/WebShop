@@ -1,5 +1,7 @@
 package coucheAccesDB;
 
+import org.jetbrains.annotations.Contract;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -11,6 +13,7 @@ public class FabriqueDAO
 
     private  FabriqueDAO(){}
 
+    @Contract(pure = true)
     public static  FabriqueDAO getInstance()
     {
         return instance;
@@ -29,6 +32,7 @@ public class FabriqueDAO
 
         catch (Exception e)
         {
+            e.printStackTrace();
             throw new ExceptionAccessBD(e.getMessage());
         }
     }

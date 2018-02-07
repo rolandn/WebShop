@@ -21,6 +21,7 @@ public class GererErreur
         catch (ExceptionAccessBD ex)
         {
             System.out.println("problème pour se connecter à la DB");
+            ex.printStackTrace();
             System.exit(0);
         }
     }
@@ -41,6 +42,7 @@ public class GererErreur
             catch (Exception e)
             {
                 System.out.println("problème lors de l'écriture dans le fichier de trace");
+                e.printStackTrace();
             }
     }
 }

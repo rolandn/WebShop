@@ -21,10 +21,10 @@ public class FenetrePrincipale extends Application {
     private MenuBar BarreMenu = new MenuBar();
 
     private Menu MenuClient = new Menu("Clients");
-    private MenuItem AjouterClient = new MenuItem("Ajouter un client");
-    private MenuItem SupprimerClient = new MenuItem("Supprimer un client");
-    private MenuItem ModifierClient = new MenuItem("Modifier un client");
-    private MenuItem ListerClient = new MenuItem("Lister les clients");
+    private MenuItem MIAjouterClient = new MenuItem("Ajouter un client");
+    private MenuItem MISupprimerClient = new MenuItem("Supprimer un client");
+    private MenuItem MIModifierClient = new MenuItem("Modifier un client");
+    private MenuItem MIListerClient = new MenuItem("Lister les clients");
 
     private Menu Quitter = new Menu("Quitter");
     private MenuItem QuitterProgramme = new MenuItem("Quitter le programme");
@@ -51,22 +51,25 @@ public class FenetrePrincipale extends Application {
         Instance = fenetre;
 
         // barre des menus
+
+        MenuClient.getItems().addAll(MIAjouterClient, MISupprimerClient, MIModifierClient, MIListerClient);
+
         BarreMenu.getMenus().addAll(MenuClient);
-        MenuClient.getItems().addAll(AjouterClient, SupprimerClient, ModifierClient, ListerClient);
+
         BarreMenu.prefWidthProperty().bind(fenetre.widthProperty());
 
         // Actions liées éléments de menu
 
-        AjouterClient.setOnAction(event -> {
+        MIAjouterClient.setOnAction(event -> {
             new AjouterClient();
         });
-        SupprimerClient.setOnAction(event -> {
+        MISupprimerClient.setOnAction(event -> {
             new SupprimerClient();
         });
-        ModifierClient.setOnAction(event -> {
+        MIModifierClient.setOnAction(event -> {
             new ModifierClient();
         });
-        ListerClient.setOnAction(event -> {
+        MIListerClient.setOnAction(event -> {
             new ListerClient();
         });
 

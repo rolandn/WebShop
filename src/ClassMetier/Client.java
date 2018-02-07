@@ -1,5 +1,7 @@
 package ClassMetier;
 
+import com.intellij.openapi.vcs.history.VcsRevisionNumber;
+
 public class Client
 {
     private int NumClient;
@@ -38,6 +40,7 @@ public class Client
 
     /** SET pour modifier la valeur de la
      * variable.
+     * @param numClient
      */
     public void setNumClient(int numClient) {
         NumClient = numClient;
@@ -84,7 +87,7 @@ public class Client
      * @param string
      */
 
-    public Client(int num, String string)
+    public Client()
     {}
 
     public Client(Client client)
