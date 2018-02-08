@@ -67,14 +67,14 @@ public class ClientDAO extends BaseDAO<Client>
 
             sqlCmd.close();
 
-            sqlCmd = SqlConn.prepareCall("insert into client values(?,?,?,?,?,?");
+            sqlCmd = SqlConn.prepareCall("insert into client values(?,?,?,?,?,'123')");
 
             sqlCmd.setInt(1, numClient);
             sqlCmd.setString(2, obj.getNom());
             sqlCmd.setString(3, obj.getPrenom());
             sqlCmd.setString(4, obj.getAdresse());
             sqlCmd.setString(5, obj.getEmail());
-            sqlCmd.setString(6, obj.getMdp());
+       //     sqlCmd.setString(6, obj.getMdp());
 
             if ((sqlCmd.executeUpdate() == 0) ? false : true) return true;
             else return false;

@@ -69,7 +69,7 @@ public class Client
 
     public void setEmail(String email) throws ExceptionMetier
     {
-        if (email.indexOf('@')!=1)
+        if (email.indexOf('@')== -1)
             throw  new ExceptionMetier("Vous devez rentrer un e-mail valide !");
         Email = email;
     }

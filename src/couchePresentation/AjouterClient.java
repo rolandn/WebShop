@@ -63,8 +63,8 @@ public class AjouterClient {
         GPSaisies.setVgap(8);
 
         // changer la taille des boites
-        //TFAdresse.setMaxWidth(90);
-        //TFEmail.setMaxWidth(120);
+        TFAdresse.setMaxWidth(600);
+        TFEmail.setMaxWidth(600);
 
         // paramétrer les boutons BAjouter et BFermer
         BAjouterClient.setPrefSize(150, 20);
@@ -72,6 +72,9 @@ public class AjouterClient {
 
         BFermer.setPrefSize(150, 20);
         BFermer.setOnAction(e -> {Fenetre.close();});
+
+        // GPSaisies et IVImage -> HBSaisies
+        HBSaisies.getChildren().addAll(GPSaisies);  // LIGNE QUI VA FAIRE APPARAITRE LES CHAMPS !!
 
         // BAjouter et BFermer -> HBBoutons
         HBBoutons.getChildren().addAll(BAjouterClient, BFermer);
@@ -117,6 +120,9 @@ public class AjouterClient {
 
             client.setNumClient(Integer.parseInt(TFNumClient.getText()));
             client.setNom(TFNom.getText());
+            client.setPrenom(TFPrenom.getText());
+            client.setAdresse(TFAdresse.getText());
+            client.setEmail(TFEmail.getText());
 
             if (FabriqueDAO.getInstance().getInstClientDAO().Ajouter(client) == false)
                 new MessageBox(AlertType.INFORMATION, "L'ajout n'a pas eu lieu.");
@@ -135,7 +141,6 @@ public class AjouterClient {
         }
 
         Fenetre.close();
-
 
     }
 }
