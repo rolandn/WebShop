@@ -14,8 +14,8 @@ import javafx.stage.Stage;
 
 public class MessageBox {
 
-    private final int Largeur = 470;
-    private final int Hauteur = 100;
+    private final int Largeur = 900;
+    private final int Hauteur = 200;
     private Stage Fenetre = new Stage();
     private HBox HBMsg = new HBox(20);
     private AnchorPane APZonesFenetre = new AnchorPane();
@@ -50,7 +50,7 @@ public class MessageBox {
         }
 
         // paramétrer le bouton BFermer
-        BFermer.setPrefSize(80, 20);
+        BFermer.setPrefSize(160, 25);
         BFermer.setOnAction(e -> { Fenetre.close(); });
 
         // IVImage et Label -> HBMsg

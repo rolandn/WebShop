@@ -17,8 +17,8 @@ public class AlcoolDAO extends BaseDAO<Alcool>
     /**
      * Méthode qui lit dans la DB un client spécifique
      *
-     * @param num : le numéro de client
-     * @return le client lu dans la DB
+     * @param num : le numéro de produit
+     * @return l'alcool lu dans la DB
      * Le caractère "?" en sql correspond à "1" dans sqlCmd et qui renvoie le "num".
      */
 
@@ -77,7 +77,6 @@ public class AlcoolDAO extends BaseDAO<Alcool>
 
     public boolean Ajouter(Alcool obj) throws ExceptionAccessBD
     {
-        Alcool alcool = null;
 
         try
         {

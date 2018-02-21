@@ -11,8 +11,8 @@ import sun.misc.Launcher;
 
 
 public class FenetrePrincipale extends Application {
-    private final int Largeur = 750;
-    private final int Longueur = 500;
+    private final int Largeur = 1500;
+    private final int Longueur = 1000;
 
     private static Stage Instance;
 

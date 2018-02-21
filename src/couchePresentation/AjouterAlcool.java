@@ -17,8 +17,8 @@ import coucheAccesDB.*;
 
 public class AjouterAlcool
 {
-    private final int Largeur = 900;
-    private final int Hauteur = 500;
+    private final int Largeur = 800;
+    private final int Hauteur = 750;
     private Stage Fenetre = new Stage();
     private Scene SceneObj;
     private HBox HBSaisies = new HBox(15);
@@ -69,7 +69,7 @@ public class AjouterAlcool
         GPSaisies.add(TFGout, 1, 6);
 
         GPSaisies.add(new Label("Provenance"), 0, 7);
-        GPSaisies.add(TFQuantiteStock, 1, 7);
+        GPSaisies.add(TFProvenance, 1, 7);
 
         // espacement entre les cellules de GPSaisies
         GPSaisies.setHgap(8);
@@ -149,7 +149,7 @@ public class AjouterAlcool
         catch (ExceptionAccessBD e)
         {
             GererErreur.GererErreurSQL("AjouterAlcool", "BAjouterAlcool", e.getMessage());
-            new MessageBox(AlertType.ERROR, "Problème de base de données lors de l'ajout du client");
+            new MessageBox(AlertType.ERROR, "Problème de base de données lors de l'ajout du produit alcool");
         }
 
         //catch (ExceptionMetier e)
@@ -159,8 +159,8 @@ public class AjouterAlcool
         //}
 
         catch (Exception e) {
-            GererErreur.GererErreurSQL("AjouterClient", "BAAjouterClient", e.getMessage());
-            new MessageBox(AlertType.ERROR, "problème inattendu lors de l'ajout du client");
+            GererErreur.GererErreurSQL("AjouterAlcool", "BAjouterAlcool", e.getMessage());
+            new MessageBox(AlertType.ERROR, "Problème inattendu lors de l'ajout de l'alcool.");
         }
 
         Fenetre.close();
