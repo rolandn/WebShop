@@ -70,9 +70,8 @@ public class AlcoolDAO extends BaseDAO<Alcool>
             }
             catch (Exception e1)
             {
-                throw new ExceptionAccessBD(e1.getMessage());
             }
-
+            throw new ExceptionAccessBD(e.getMessage());
         }
     }
 
@@ -80,7 +79,7 @@ public class AlcoolDAO extends BaseDAO<Alcool>
     {
         Alcool alcool = null;
 
-        try  // A ré-écrire !!
+        try
         {
             PreparedStatement sqlCmd = SqlConn.prepareCall("select max(NumArticle) + 1 from produit");
             ResultSet sqlRes = sqlCmd.executeQuery();
@@ -99,23 +98,21 @@ public class AlcoolDAO extends BaseDAO<Alcool>
             sqlCmd.setInt(4, obj.getPrix());
             sqlCmd.setInt(5, obj.getQuantiteStock());
 
-            if ((sqlCmd.executeUpdate() == 0) ? false : true) return true;
-            else return false;
+            sqlCmd.close();
 
-            // Peut-on faire les requêtes pour alimenter la deuxième table ici dans le foulée ???
+            /// VERIFIER SI PAS D'ERREUR ICI !!! //////
 
-            PreparedStatement sqlCmd = SqlConn.prepareCall("select max(NumArticle) + 1 from alcool");
-            ResultSet sqlRes = sqlCmd.executeQuery();
+            PreparedStatement sqlCmd2 = SqlConn.prepareCall("select max(NumArticle) from produit");
+            ResultSet sqlRes2 = sqlCmd.executeQuery();
             sqlRes.next();
 
-            int NumArticle = sqlRes.getInt(1);
-            if (sqlRes.wasNull()) NumArticle = 1;
+            int NumArticle2 = sqlRes.getInt(1);
 
             sqlCmd.close();
 
             sqlCmd = SqlConn.prepareCall("insert into alcool values(?,?,?,?)");
 
-            sqlCmd.setInt(1, NumArticle);
+            sqlCmd.setInt(1, NumArticle2);
             sqlCmd.setInt(2, obj.getDegreAlcool());
             sqlCmd.setString(3, obj.getGout());
             sqlCmd.setString(4, obj.getProvenance());
@@ -133,10 +130,23 @@ public class AlcoolDAO extends BaseDAO<Alcool>
             }
             catch (Exception e1)
             {
-                throw new ExceptionAccessBD(e1.getMessage());
             }
-
+            throw new ExceptionAccessBD(e.getMessage());
         }
     }
 
+    @Override
+    public boolean Modifier(Alcool obj) {
+        return false;
+    }
+
+    @Override
+    public List<Alcool> ListerTous() {
+        return null;
+    }
+
+    @Override
+    public boolean Supprimer(int num) {
+        return false;
+    }
 }

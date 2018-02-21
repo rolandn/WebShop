@@ -44,7 +44,10 @@ public class ClientDAO extends BaseDAO<Client>
 
             sqlRes.close();
             return client;
-        } catch (Exception e) {
+        }
+
+        catch (Exception e)
+        {
             throw new ExceptionAccessBD(e.getMessage());
         }
     }
@@ -78,7 +81,10 @@ public class ClientDAO extends BaseDAO<Client>
 
             if ((sqlCmd.executeUpdate() == 0) ? false : true) return true;
             else return false;
-        } catch (Exception e) {
+        }
+
+        catch (Exception e)
+        {
             throw new ExceptionAccessBD(e.getMessage());
         }
     }
