@@ -41,4 +41,8 @@ public class FabriqueDAO
     {
         return new ClientDAO(SqlConn);
     }
+
+    public AlcoolDAO getInstAlcoolDAO() {return  new AlcoolDAO(SqlConn);}
+
+
 }

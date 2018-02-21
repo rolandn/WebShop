@@ -38,6 +38,29 @@ public class Alcool extends Produit {
     }
 
 
+    /**
+     * Méthode "SET" pour les variables venant de Produit
+     */
+
+    public void setNumArticle(int numArticle){
+        NumArticle = numArticle;
+    }
+
+    public void setNomImage(String nomImage){
+        NomImage = nomImage;
+    }
+
+    public void setPrix(int prix){
+        Prix = prix;
+    }
+
+    public void setQuantiteStock(int quantiteStock){
+        QuantiteStock = quantiteStock;
+    }
+
+
+    public Alcool (){}
+
     public Alcool(int numArticle, String nom, String nomImage, int prix, int quantiteStock, int degreAlcool, String gout, String provenance) {
         super(numArticle, nom, nomImage, prix, quantiteStock);
         DegreAlcool = degreAlcool;

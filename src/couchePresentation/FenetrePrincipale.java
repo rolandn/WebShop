@@ -26,6 +26,9 @@ public class FenetrePrincipale extends Application {
     private MenuItem MIModifierClient = new MenuItem("Modifier un client");
     private MenuItem MIListerClient = new MenuItem("Lister les clients");
 
+    private Menu MenuAlcool = new Menu("Alcools");
+    private MenuItem MIAjouterAlcool = new MenuItem("Ajouter un alcool");
+
     private Menu Quitter = new Menu("Quitter");
     private MenuItem QuitterProgramme = new MenuItem("Quitter le programme");
 
@@ -53,8 +56,10 @@ public class FenetrePrincipale extends Application {
         // barre des menus
 
         MenuClient.getItems().addAll(MIAjouterClient, MISupprimerClient, MIModifierClient, MIListerClient);
+        MenuAlcool.getItems().addAll(MIAjouterAlcool);
 
         BarreMenu.getMenus().addAll(MenuClient);
+        BarreMenu.getMenus().addAll(MenuAlcool);
 
         BarreMenu.prefWidthProperty().bind(fenetre.widthProperty());
 
@@ -72,6 +77,10 @@ public class FenetrePrincipale extends Application {
         MIListerClient.setOnAction(event -> {
             new ListerClient();
         });
+
+        MIAjouterAlcool.setOnAction(event -> {
+                    new AjouterAlcool();
+                });
 
         QuitterProgramme.setOnAction(event -> {
             System.exit(0);

@@ -27,13 +27,17 @@ public class AjouterAlcool
     private GridPane GPSaisies = new GridPane();
     private VBox VBZonesFenetre = new VBox();
 
-    private TextField TFNumClient = new TextField();
+    private TextField TFNumArticle = new TextField();
     private TextField TFNom = new TextField();
-    private TextField TFPrenom = new TextField();
-    private TextField TFAdresse = new TextField();
-    private TextField TFEmail = new TextField();
+    private TextField TFNomIMage = new TextField();
+    private TextField TFPrix = new TextField();
+    private TextField TFQuantiteStock = new TextField();
+    private TextField TFDegreAlcool = new TextField();
+    private TextField TFGout = new TextField();
+    private TextField TFProvenance = new TextField();
 
-    private Button BAjouterClient = new Button("Ajouter");
+
+    private Button BAjouterAlcool = new Button("Ajouter");
     private Button BFermer = new Button("Fermer");
     private Separator SLigne = new Separator();
 
@@ -43,32 +47,41 @@ public class AjouterAlcool
      * @param  : l'objet Stage représentant la fenêtre principale
      */
     public AjouterAlcool() {
-        GPSaisies.add(new Label("Numéro de Client"), 0, 0);
-        GPSaisies.add(TFNumClient, 1, 0);
+        GPSaisies.add(new Label("Numéro d'article"), 0, 0);
+        GPSaisies.add(TFNumArticle, 1, 0);
 
         GPSaisies.add(new Label("Nom"), 0, 1);
         GPSaisies.add(TFNom, 1, 1);
 
-        GPSaisies.add(new Label("Prénom"), 0, 2);
-        GPSaisies.add(TFPrenom, 1, 2);
+        GPSaisies.add(new Label("Numéro d'image"), 0, 2);
+        GPSaisies.add(TFNomIMage, 1, 2);
 
-        GPSaisies.add(new Label("Adresse"), 0, 3);
-        GPSaisies.add(TFAdresse, 1, 3);
+        GPSaisies.add(new Label("Prix"), 0, 3);
+        GPSaisies.add(TFPrix, 1, 3);
 
-        GPSaisies.add(new Label("Email"), 0, 4);
-        GPSaisies.add(TFEmail, 1, 4);
+        GPSaisies.add(new Label("Quantité en stock"), 0, 4);
+        GPSaisies.add(TFQuantiteStock, 1, 4);
+
+        GPSaisies.add(new Label("Degré d'alcool"), 0, 5);
+        GPSaisies.add(TFDegreAlcool, 1, 5);
+
+        GPSaisies.add(new Label("Goût"), 0, 6);
+        GPSaisies.add(TFGout, 1, 6);
+
+        GPSaisies.add(new Label("Provenance"), 0, 7);
+        GPSaisies.add(TFQuantiteStock, 1, 7);
 
         // espacement entre les cellules de GPSaisies
         GPSaisies.setHgap(8);
         GPSaisies.setVgap(8);
 
         // changer la taille des boites
-        TFAdresse.setMaxWidth(600);
-        TFEmail.setMaxWidth(600);
+        TFNom.setMaxWidth(600);
 
-        // paramétrer les boutons BAjouter et BFermer
-        BAjouterClient.setPrefSize(150, 20);
-        BAjouterClient.setOnAction(event -> {BAjouterClient();} );
+
+        // Paramétrer les boutons BAjouter et BFermer
+        BAjouterAlcool.setPrefSize(150, 20);
+        BAjouterAlcool.setOnAction(event -> {BAjouterAlcool();} );
 
         BFermer.setPrefSize(150, 20);
         BFermer.setOnAction(e -> {Fenetre.close();});
@@ -77,7 +90,7 @@ public class AjouterAlcool
         HBSaisies.getChildren().addAll(GPSaisies);  // LIGNE QUI VA FAIRE APPARAITRE LES CHAMPS !!
 
         // BAjouter et BFermer -> HBBoutons
-        HBBoutons.getChildren().addAll(BAjouterClient, BFermer);
+        HBBoutons.getChildren().addAll(BAjouterAlcool, BFermer);
 
         // HBSaisies, SLigne et HBBoutons -> VBZonesFenetre
         VBZonesFenetre.getChildren().addAll(HBSaisies, SLigne, HBBoutons);
@@ -99,7 +112,7 @@ public class AjouterAlcool
         SceneObj.getStylesheets().add("couchePresentation/styleComboBox.css");
 
         // paramétrer la fenêtre, puis l'afficher
-        Fenetre.setTitle("Ajouter un nouveau Client");
+        Fenetre.setTitle("Ajouter un nouvel alcool");
         Fenetre.setResizable(true);
         Fenetre.setX(FenetrePrincipale.getInstance().getX() +
                 (FenetrePrincipale.getInstance().getWidth() - Largeur) / 2);
@@ -114,28 +127,38 @@ public class AjouterAlcool
      * Méthode qui exécute l'ajout quand on clique sur le bouton ajouter.
      */
 
-    private void BAjouterClient() {
+    private void BAjouterAlcool() {
         try {
-            Client client = new Client();
+            Alcool alcool = new Alcool();
 
-            client.setNumClient(Integer.parseInt(TFNumClient.getText()));
-            client.setNom(TFNom.getText());
-            client.setPrenom(TFPrenom.getText());
-            client.setAdresse(TFAdresse.getText());
-            client.setEmail(TFEmail.getText());
+            alcool.setNumArticle(Integer.parseInt(TFNumArticle.getText()));
+            alcool.setNomImage(TFNomIMage.getText());
+            alcool.setPrix(Integer.parseInt(TFPrix.getText()));
+            alcool.setQuantiteStock(Integer.parseInt(TFQuantiteStock.getText()));
+            alcool.setDegreAlcool(Integer.parseInt(TFDegreAlcool.getText()));
+            alcool.setGout(TFGout.getText());
+            alcool.setProvenance(TFProvenance.getText());
 
-            if (FabriqueDAO.getInstance().getInstClientDAO().Ajouter(client) == false)
+            if (FabriqueDAO.getInstance().getInstAlcoolDAO().Ajouter(alcool) == false)
                 new MessageBox(AlertType.INFORMATION, "L'ajout n'a pas eu lieu.");
 
             else
                 new MessageBox(AlertType.INFORMATION, "L'ajout s'est bien passé.");
-        } catch (ExceptionAccessBD e) {
-            GererErreur.GererErreurSQL("AjouterClient", "BAAjouterClient()", e.getMessage());
+        }
+
+        catch (ExceptionAccessBD e)
+        {
+            GererErreur.GererErreurSQL("AjouterAlcool", "BAjouterAlcool", e.getMessage());
             new MessageBox(AlertType.ERROR, "Problème de base de données lors de l'ajout du client");
-        } catch (ExceptionMetier e) {
-            new MessageBox(AlertType.WARNING, e.getMessage());
-            return;
-        } catch (Exception e) {
+        }
+
+        //catch (ExceptionMetier e)
+        //{
+        //    new MessageBox(AlertType.WARNING, e.getMessage());
+        //    return;
+        //}
+
+        catch (Exception e) {
             GererErreur.GererErreurSQL("AjouterClient", "BAAjouterClient", e.getMessage());
             new MessageBox(AlertType.ERROR, "problème inattendu lors de l'ajout du client");
         }

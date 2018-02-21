@@ -2,11 +2,11 @@ package ClassMetier;
 
 public class Produit
 {
-    private int NumArticle;
-    private String Nom;
-    private String NomImage;
-    private int Prix;
-    private int QuantiteStock;
+    public int NumArticle;
+    public String Nom;
+    public String NomImage;
+    public int Prix;
+    public int QuantiteStock;
 
     /**
      * Contructeurs
