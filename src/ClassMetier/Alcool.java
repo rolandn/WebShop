@@ -46,6 +46,8 @@ public class Alcool extends Produit {
         NumArticle = numArticle;
     }
 
+    public void setNom(String nom) {Nom = nom;}
+
     public void setNomImage(String nomImage){
         NomImage = nomImage;
     }

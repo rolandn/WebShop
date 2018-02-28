@@ -55,4 +55,10 @@ public class Produit
     public int getQuantiteStock() {
         return QuantiteStock;
     }
+
+
+    public void setQuantiteStock(int quantiteStock)
+    {
+        QuantiteStock = quantiteStock;
+    }
 }

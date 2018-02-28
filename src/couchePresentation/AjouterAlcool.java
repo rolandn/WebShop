@@ -29,17 +29,21 @@ public class AjouterAlcool
 
     private TextField TFNumArticle = new TextField();
     private TextField TFNom = new TextField();
-    private TextField TFNomIMage = new TextField();
+    private TextField TFNomImage = new TextField("noimage.png");
     private TextField TFPrix = new TextField();
     private TextField TFQuantiteStock = new TextField();
     private TextField TFDegreAlcool = new TextField();
     private TextField TFGout = new TextField();
     private TextField TFProvenance = new TextField();
 
+    private Button BChargerImage = new Button("...");
+
 
     private Button BAjouterAlcool = new Button("Ajouter");
     private Button BFermer = new Button("Fermer");
     private Separator SLigne = new Separator();
+    private ImageView IVImage = new ImageView();
+    private File FichierSrc = null;
 
     /**
      * Constructeur : il crée la fenêtre
@@ -54,7 +58,7 @@ public class AjouterAlcool
         GPSaisies.add(TFNom, 1, 1);
 
         GPSaisies.add(new Label("Numéro d'image"), 0, 2);
-        GPSaisies.add(TFNomIMage, 1, 2);
+        GPSaisies.add(TFNomImage, 1, 2);
 
         GPSaisies.add(new Label("Prix"), 0, 3);
         GPSaisies.add(TFPrix, 1, 3);
@@ -88,6 +92,37 @@ public class AjouterAlcool
 
         // GPSaisies et IVImage -> HBSaisies
         HBSaisies.getChildren().addAll(GPSaisies);  // LIGNE QUI VA FAIRE APPARAITRE LES CHAMPS !!
+
+        // La gestion de l'Image
+
+        TFNomImage.setDisable(true);                    // empêcher l'écriture du nom de l'image
+        TFNomImage.setStyle("-fx-opacity: 1.0;");
+
+        BChargerImage.setPrefSize(20, 20);
+        BChargerImage.setOnAction(e -> {OuvrirFichierImg(); });
+
+        HBImg.getChildren().addAll(TFNomImage, BChargerImage);
+
+        IVImage.setImage(new Image("file:imgs/" + TFNomImage.getText()));
+
+        /**
+         * Ouvrir une boîte de dialogue permettant de sélectionner une image sur un disque
+         */
+
+        private void OuvrirFichierImg()
+        {
+            FileChooser btNomImage = new FileChooser();
+            btNomImage.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+
+            FichierSrc = btNomImage.showOpenDialog(null);
+
+            if(FichierSrc != null)
+            {
+                TFNomImage.setText(FichierSrc.getName());
+                IVImage.setImage(new Image("file:" + FichierSrc.getPath()));
+            }
+        }
+
 
         // BAjouter et BFermer -> HBBoutons
         HBBoutons.getChildren().addAll(BAjouterAlcool, BFermer);
@@ -132,7 +167,8 @@ public class AjouterAlcool
             Alcool alcool = new Alcool();
 
             alcool.setNumArticle(Integer.parseInt(TFNumArticle.getText()));
-            alcool.setNomImage(TFNomIMage.getText());
+            alcool.setNom(TFNom.getText());
+            alcool.setNomImage(TFNomImage.getText());
             alcool.setPrix(Integer.parseInt(TFPrix.getText()));
             alcool.setQuantiteStock(Integer.parseInt(TFQuantiteStock.getText()));
             alcool.setDegreAlcool(Integer.parseInt(TFDegreAlcool.getText()));
@@ -144,6 +180,14 @@ public class AjouterAlcool
 
             else
                 new MessageBox(AlertType.INFORMATION, "L'ajout s'est bien passé.");
+
+            // copier le fichier de l'image vers le répertoire des images
+            if (FichierSrc != null)
+            {
+                File FichierDst = new File(System.getProperty("user.dir") +
+                        "/imgs/imgseleves/" + FichierSrc.getName());
+                Files.copy(FichierSrc.toPath(), FichierDst.toPath(), REPLACE_EXISTING);
+            }
         }
 
         catch (ExceptionAccessBD e)

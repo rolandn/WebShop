@@ -80,6 +80,8 @@ public class AlcoolDAO extends BaseDAO<Alcool>
 
         try
         {
+            SqlConn.setAutoCommit(false);
+
             PreparedStatement sqlCmd = SqlConn.prepareCall("select max(NumArticle) + 1 from produit");
             ResultSet sqlRes = sqlCmd.executeQuery();
             sqlRes.next();
@@ -97,24 +99,27 @@ public class AlcoolDAO extends BaseDAO<Alcool>
             sqlCmd.setInt(4, obj.getPrix());
             sqlCmd.setInt(5, obj.getQuantiteStock());
 
-            sqlCmd.close();
+            sqlCmd.executeUpdate();
 
             /// VERIFIER SI PAS D'ERREUR ICI !!! //////
 
-            PreparedStatement sqlCmd2 = SqlConn.prepareCall("select max(NumArticle) from produit");
-            ResultSet sqlRes2 = sqlCmd.executeQuery();
-            sqlRes.next();
+            //PreparedStatement sqlCmd2 = SqlConn.prepareCall("select max(NumArticle) from produit");
+            //ResultSet sqlRes2 = sqlCmd.executeQuery();
+            //sqlRes.next();
 
-            int NumArticle2 = sqlRes.getInt(1);
+           // int NumArticle2 = sqlRes.getInt(1);
 
-            sqlCmd.close();
 
             sqlCmd = SqlConn.prepareCall("insert into alcool values(?,?,?,?)");
 
-            sqlCmd.setInt(1, NumArticle2);
+            sqlCmd.setInt(1, NumArticle);
             sqlCmd.setInt(2, obj.getDegreAlcool());
             sqlCmd.setString(3, obj.getGout());
             sqlCmd.setString(4, obj.getProvenance());
+
+            sqlCmd.executeUpdate();
+            SqlConn.commit();
+            SqlConn.setAutoCommit(true);
 
             if ((sqlCmd.executeUpdate() == 0) ? false : true) return true;
             else return false;
