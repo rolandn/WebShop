@@ -46,6 +46,24 @@ public class AjouterAlcool
     private File FichierSrc = null;
 
     /**
+     * Ouvrir une boîte de dialogue permettant de sélectionner une image sur un disque
+     */
+
+    private void OuvrirFichierImg()
+    {
+        FileChooser btNomImage = new FileChooser();
+        btNomImage.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+
+        FichierSrc = btNomImage.showOpenDialog(null);
+
+        if(FichierSrc != null)
+        {
+            TFNomImage.setText(FichierSrc.getName());
+            IVImage.setImage(new Image("file:" + FichierSrc.getPath()));
+        }
+    }
+
+    /**
      * Constructeur : il crée la fenêtre
      *
      * @param  : l'objet Stage représentant la fenêtre principale
@@ -104,24 +122,6 @@ public class AjouterAlcool
         HBImg.getChildren().addAll(TFNomImage, BChargerImage);
 
         IVImage.setImage(new Image("file:imgs/" + TFNomImage.getText()));
-
-        /**
-         * Ouvrir une boîte de dialogue permettant de sélectionner une image sur un disque
-         */
-
-        private void OuvrirFichierImg()
-        {
-            FileChooser btNomImage = new FileChooser();
-            btNomImage.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
-
-            FichierSrc = btNomImage.showOpenDialog(null);
-
-            if(FichierSrc != null)
-            {
-                TFNomImage.setText(FichierSrc.getName());
-                IVImage.setImage(new Image("file:" + FichierSrc.getPath()));
-            }
-        }
 
 
         // BAjouter et BFermer -> HBBoutons
@@ -185,7 +185,7 @@ public class AjouterAlcool
             if (FichierSrc != null)
             {
                 File FichierDst = new File(System.getProperty("user.dir") +
-                        "/imgs/imgseleves/" + FichierSrc.getName());
+                        "/imgs/" + FichierSrc.getName());
                 Files.copy(FichierSrc.toPath(), FichierDst.toPath(), REPLACE_EXISTING);
             }
         }
