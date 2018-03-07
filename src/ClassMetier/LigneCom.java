@@ -34,4 +34,5 @@ public class LigneCom
         IdProduit = idProduit;
         Quantite = quantite;
     }
+
 }
