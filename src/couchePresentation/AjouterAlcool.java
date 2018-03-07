@@ -45,6 +45,8 @@ public class AjouterAlcool
     private ImageView IVImage = new ImageView();
     private File FichierSrc = null;
 
+
+
     /**
      * Ouvrir une boîte de dialogue permettant de sélectionner une image sur un disque
      */
@@ -93,6 +95,9 @@ public class AjouterAlcool
         GPSaisies.add(new Label("Provenance"), 0, 7);
         GPSaisies.add(TFProvenance, 1, 7);
 
+        GPSaisies.add(new Label("Photo du produit : "), 0, 8);
+        GPSaisies.add(HBImg, 1, 8);
+
         // espacement entre les cellules de GPSaisies
         GPSaisies.setHgap(8);
         GPSaisies.setVgap(8);
@@ -109,26 +114,30 @@ public class AjouterAlcool
         BFermer.setOnAction(e -> {Fenetre.close();});
 
         // GPSaisies et IVImage -> HBSaisies
-        HBSaisies.getChildren().addAll(GPSaisies);  // LIGNE QUI VA FAIRE APPARAITRE LES CHAMPS !!
+        HBSaisies.getChildren().addAll(GPSaisies, IVImage);  // LIGNE QUI VA FAIRE APPARAITRE LES CHAMPS !!
+        HBox.setMargin(IVImage, new Insets(25, 0, 25, 0));
 
         // La gestion de l'Image
 
         TFNomImage.setDisable(true);                    // empêcher l'écriture du nom de l'image
         TFNomImage.setStyle("-fx-opacity: 1.0;");
 
-        BChargerImage.setPrefSize(20, 20);
+        BChargerImage.setPrefSize(50, 50);
         BChargerImage.setOnAction(e -> {OuvrirFichierImg(); });
 
         HBImg.getChildren().addAll(TFNomImage, BChargerImage);
 
-        IVImage.setImage(new Image("file:imgs/" + TFNomImage.getText()));
+        IVImage.setImage(new Image("file:imgs/" + TFNomImage.getText()));  // charge l'image par défault
 
-
-        // BAjouter et BFermer -> HBBoutons
-        HBBoutons.getChildren().addAll(BAjouterAlcool, BFermer);
+        // GPSaisies et IVImage -> HBSaisies
+       // HBSaisies.getChildren().addAll(GPSaisies, IVImage);
+       // HBox.setMargin(IVImage, new Insets(25, 0, 25, 0));
 
         // HBSaisies, SLigne et HBBoutons -> VBZonesFenetre
         VBZonesFenetre.getChildren().addAll(HBSaisies, SLigne, HBBoutons);
+
+        // BAjouter et BFermer -> HBBoutons
+        HBBoutons.getChildren().addAll(BAjouterAlcool, BFermer);
 
         // définir les marges autour des objets dans VBZonesFenetre
         VBox.setMargin(HBSaisies, new Insets(15, 15, 10, 15));
