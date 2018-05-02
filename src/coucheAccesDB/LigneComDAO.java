@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import ClassMetier.LigneCom;
 
-public class LigneComDAO extends BaseDAO<LigneCom> {
+public class LigneComDAO extends BaseDAO<LigneCom>
+{
     /**
      * Constructeur
      */
@@ -20,7 +21,10 @@ public class LigneComDAO extends BaseDAO<LigneCom> {
      * @param num : le numéro de ligne de commande
      */
 
-    public LigneCom Charger(int num) throws ExceptionAccessBD {
+    public LigneCom Charger(int num) throws ExceptionAccessBD
+    {
+        LigneCom ligneCom = null;
+
         try {
             SqlConn.setAutoCommit(false);
             PreparedStatement sqlCmd =
@@ -34,39 +38,51 @@ public class LigneComDAO extends BaseDAO<LigneCom> {
             SqlConn.setAutoCommit(true);
 
 
-            if ((iRes.next() == true)) {
+            if (iRes.next() == true)
+            {
                 ligneCom = new LigneCom(
-                        iRes.getInt(1)  // Id Ligne
-                        iRes.getInt(2)  // Id Commande
-                        iRes.getInt(3)  // Id Produit
+                        iRes.getInt(1),  // Id Ligne
+                        iRes.getInt(2),  // Id Commande
+                        iRes.getInt(3),  // Id Produit
                         iRes.getInt(4));  // Quantite
             }
 
             iRes.close();
             return ligneCom;
-        } catch (Exception e) {
+        }
+
+        catch (Exception e)
+        {
             try {
                 SqlConn.rollback();
                 SqlConn.setAutoCommit(true);
-            } catch (Exception e1) {
+            }
+            catch (Exception e1)
+            {
             }
             throw new ExceptionAccessBD(e.getMessage());
         }
 
-        @Override
-        public boolean Modifier (LigneCom obj){
-            return false;
-        }
 
-        @Override
-        public List<LigneCom> ListerTous () {
-            return null;
-        }
+    }
 
-        @Override
-        public boolean Supprimer ( int num){
-            return false;
-        }
+    @Override
+    public boolean Ajouter(LigneCom obj) throws ExceptionAccessBD {
+        return false;
+    }
 
+    @Override
+    public boolean Modifier(LigneCom obj) throws ExceptionAccessBD {
+        return false;
+    }
+
+    @Override
+    public boolean Supprimer(int num) throws ExceptionAccessBD {
+        return false;
+    }
+
+    @Override
+    public List<LigneCom> ListerTous() throws ExceptionAccessBD {
+        return null;
     }
 }

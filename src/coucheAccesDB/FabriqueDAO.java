@@ -42,7 +42,9 @@ public class FabriqueDAO
         return new ClientDAO(SqlConn);
     }
 
-    public AlcoolDAO getInstAlcoolDAO() {return  new AlcoolDAO(SqlConn);}
+    public AlcoolDAO getInstAlcoolDAO() {return new AlcoolDAO(SqlConn);}
+
+    public ProduitDAO getInsProduitDAO() {return new ProduitDAO(SqlConn);}
 
 
 }

@@ -10,9 +10,15 @@ public class Produit
 
     /**
      * Contructeurs
+     * @param anInt
+     * @param string
+     * @param sqlResString
+     * @param resString
+     * @param s
+     * @param string1
      */
 
-    public Produit()
+    public Produit(int anInt, String string, String sqlResString, String resString, String s, String string1)
     {};
 
     public Produit (Produit produit)
@@ -61,4 +67,11 @@ public class Produit
     {
         QuantiteStock = quantiteStock;
     }
+
+    /**
+     * Modifier une quantité en stock
+     */
+
+
+
 }
