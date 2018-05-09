@@ -13,12 +13,13 @@ import javafx.stage.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.io.File;
 import java.nio.file.Files;
+import java.util.List;
+
 import ClassMetier.*;
 import coucheAccesDB.*;
 
 
-    public class ModifierStock
-    {
+    public class ModifierStock {
         private final int Largeur = 580;
         private final int Hauteur = 300;
 
@@ -42,34 +43,33 @@ import coucheAccesDB.*;
         private Separator SLigne1 = new Separator();
         private ImageView IVImage = new ImageView();
         private File FichierSrc;
+        private TextField TFChangementQuantite = new TextField();
+        private ComboBox<Produit> CBChoixProduit = new ComboBox();
 
 
+        /**
+         *
+         */
 
-    /**
-     * Constructeur : il crée la fenêtre
-     * @param fenParent : l'objet Stage représentant la fenêtre principale
-     */
+        public ModifierStock() {
 
-        public ModifierProduit()
-        {
-            try
-            {
+            /**
+             * On affiche d'abord la liste des produits
+             */
+
+            try {
                 CBProduit.setItems(FXCollections.observableArrayList(
                         FabriqueDAO.getInstance().getInsProduitDAO().ListerTous()
                 ));
-            }
-
-            catch (ExceptionAccessBD e)
-            {
+            } catch (ExceptionAccessBD e) {
                 GererErreur.GererErreurSQL("ModifierStock, ", "ModifierProduit()", e.getMessage());
                 new MessageBox(AlertType.INFORMATION,
                         "un problème est survenu lors du listage des produits.");
 
-                        return;
+                return;
             }
 
-            if (CBProduit.getItems().size()==0)
-            {
+            if (CBProduit.getItems().size() == 0) {
                 new MessageBox(AlertType.INFORMATION, "Il n'y a encore aucun produit dans la DB.");
                 return;
             }
@@ -77,19 +77,24 @@ import coucheAccesDB.*;
             CBProduit.setVisibleRowCount(5);
             CBProduit.getSelectionModel().selectFirst();
 
-            // gérer le changement de Produit courant dans la boîte combo CBChoixProduit
+
+            /**
+             * On gérer le changement de Produit courant dans la boîte combo CBChoixProduit
+             */
+
             CBChoixProduit.getSelectionModel().selectedItemProperty().addListener((obs,
-                                                                                   ancProduit,nouvProduit)->{
-                if(nouvProduit != null) CBChangerQuantite((nouvProduit));
+                                                                                   ancProduit, nouvProduit) ->
+            {
+                if (nouvProduit != null) BChangerQuantie((nouvProduit));
+
+            });
 
 
 
+        }
 
+        private void BChangerQuantie(Produit nouvProduit) {
 
-                
-                private void CBChangerQuantite(Produit nouvProduit)
-                {
-                    TFChangementQuantite.setText(nouvProduit.getQuantiteStockTxt());
-                }
-
+            TFChangementQuantite.setText(String.valueOf(nouvProduit.getQuantiteStock()));
+        }
     }

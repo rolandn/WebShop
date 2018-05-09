@@ -13,6 +13,19 @@ public class Alcool extends Produit {
         Provenance = e.getProvenance();
     }
 
+    public Alcool(int numArticle, String nom, String nomImage, int prix, int quantiteStock, int degreAlcool, String gout, String provenance)
+    {
+        super(numArticle, nom, nomImage, prix, quantiteStock);
+        DegreAlcool = degreAlcool;
+        Gout = gout;
+        Provenance = provenance;
+
+    }
+
+    public Alcool() {
+        super();
+    }
+
     public int getDegreAlcool() {
         return DegreAlcool;
     }
@@ -61,15 +74,7 @@ public class Alcool extends Produit {
     }
 
 
-    public Alcool (){}
 
-    public Alcool(int numArticle, String nom, String nomImage, int prix, int quantiteStock, int degreAlcool, String gout, String provenance) {
-        super(numArticle, nom, nomImage, prix, quantiteStock);
-        DegreAlcool = degreAlcool;
-        Gout = gout;
-        Provenance = provenance;
-
-    }
 
 }
 

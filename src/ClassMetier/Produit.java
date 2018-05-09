@@ -1,5 +1,7 @@
 package ClassMetier;
 
+import com.intellij.openapi.vcs.history.VcsRevisionNumber;
+
 public class Produit
 {
     public int NumArticle;
@@ -37,6 +39,10 @@ public class Produit
         NomImage =nomImage;
         Prix = prix;
         QuantiteStock = quantiteStock;
+    }
+
+    public Produit() {
+
     }
 
     /**
