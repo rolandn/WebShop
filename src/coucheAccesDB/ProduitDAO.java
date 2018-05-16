@@ -63,8 +63,7 @@ public class ProduitDAO extends BaseDAO<Produit>
 
         try
         {
-            PreparedStatement sqlCmd = SqlConn.prepareCall("select NumArticle, nom, nomImage," +
-                    "prix, quantiteStock" + "from produit");
+            PreparedStatement sqlCmd = SqlConn.prepareCall("select NumArticle, nom, nomImage, prix, quantiteStock from produit");
 
             ResultSet sqlRes = sqlCmd.executeQuery();
 

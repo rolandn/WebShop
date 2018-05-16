@@ -30,8 +30,9 @@ public class Alcool extends Produit {
         return DegreAlcool;
     }
 
-    public void setDegreAlcool(int i) {
+    public int setDegreAlcool(int i) {
         DegreAlcool = i;
+        return i;
     }
 
     public String getGout() {
@@ -55,8 +56,9 @@ public class Alcool extends Produit {
      * Méthode "SET" pour les variables venant de Produit
      */
 
-    public void setNumArticle(int numArticle){
+    public int setNumArticle(int numArticle){
         NumArticle = numArticle;
+        return numArticle;
     }
 
     public void setNom(String nom) {Nom = nom;}
@@ -65,12 +67,14 @@ public class Alcool extends Produit {
         NomImage = nomImage;
     }
 
-    public void setPrix(int prix){
+    public int setPrix(int prix){
         Prix = prix;
+        return prix;
     }
 
-    public void setQuantiteStock(int quantiteStock){
+    public int setQuantiteStock(int quantiteStock){
         QuantiteStock = quantiteStock;
+        return quantiteStock;
     }
 
 

@@ -10,10 +10,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
+
+
 
 import ClassMetier.*;
 import coucheAccesDB.*;
@@ -28,7 +32,7 @@ import coucheAccesDB.*;
         private HBox HBSaisies = new HBox(15);
         private HBox HBBoutons = new HBox(15);
         private HBox HBoxImg = new HBox(15);
-        private GridPane GPSaisies = new GridPane();
+      //  private GridPane GPSaisies = new GridPane();
         private VBox VBZonesFenetre = new VBox();
         private ComboBox<Produit> CBProduit = new ComboBox<>();
         private TextField TFNumArticle = new TextField();
@@ -44,7 +48,13 @@ import coucheAccesDB.*;
         private ImageView IVImage = new ImageView();
         private File FichierSrc;
         private TextField TFChangementQuantite = new TextField();
-        private ComboBox<Produit> CBChoixProduit = new ComboBox();
+        //private ComboBox<Produit> CBChoixProduit = new ComboBox();
+        private GridPane GPModifications = new GridPane();
+        private HBox HBSaisie = new HBox(15);
+        private Label labChoixProduit = new Label("Choix du Produit :");
+        private Label labQuantite = new Label("Quantité :");
+        private VBox VBZoneFenetre = new VBox();
+
 
 
         /**
@@ -57,14 +67,19 @@ import coucheAccesDB.*;
              * On affiche d'abord la liste des produits
              */
 
+
+           // CBEleves.setItems(FXCollections.observableArrayList(
+             //       FabriqueDAO.getInstance().getInstEleveDAO().ListerTous()));
+
             try {
+
                 CBProduit.setItems(FXCollections.observableArrayList(
                         FabriqueDAO.getInstance().getInsProduitDAO().ListerTous()
                 ));
             } catch (ExceptionAccessBD e) {
                 GererErreur.GererErreurSQL("ModifierStock, ", "ModifierProduit()", e.getMessage());
                 new MessageBox(AlertType.INFORMATION,
-                        "un problème est survenu lors du listage des produits.");
+                        "Un problème est survenu lors du listage des produits.");
 
                 return;
             }
@@ -74,7 +89,7 @@ import coucheAccesDB.*;
                 return;
             }
 
-            CBProduit.setVisibleRowCount(5);
+            CBProduit.setVisibleRowCount(10);
             CBProduit.getSelectionModel().selectFirst();
 
 
@@ -82,7 +97,7 @@ import coucheAccesDB.*;
              * On gérer le changement de Produit courant dans la boîte combo CBChoixProduit
              */
 
-            CBChoixProduit.getSelectionModel().selectedItemProperty().addListener((obs,
+            CBProduit.getSelectionModel().selectedItemProperty().addListener((obs,
                                                                                    ancProduit, nouvProduit) ->
             {
                 if (nouvProduit != null) BChangerQuantie((nouvProduit));
@@ -90,11 +105,116 @@ import coucheAccesDB.*;
             });
 
 
+            // LAYOUT ----------------------------------------------------------------
+
+            //taille TFQuantite
+            TFChangementQuantite.setMaxWidth(80);
+            CBProduit.setPrefSize(80,20);
+
+            // Taille liste des produits
+            CBProduit.setMaxWidth(120);
+
+            //Construction du gridpane
+            GPModifications.add(labChoixProduit,0,0);
+            GPModifications.add(CBProduit,1,0);
+            GPModifications.add(labQuantite,0,1);
+            GPModifications.add(TFChangementQuantite, 1, 1);
+
+
+            // espacement entre les cellules de GPSaisies
+            GPModifications.setHgap(8);
+            GPModifications.setVgap(8);
+
+            //construction des HB  boutons + GPane
+            HBBoutons.getChildren().addAll(BModifier,BFermer);
+            // HBSaisie.getChildren().add(GPModifications);
+
+
+            // paramétrer les boutons BAjouter et BFermer
+            BModifier.setPrefSize(5000, 5000);
+            BModifier.setOnAction(event -> {BModifierQuantite();});
+            BFermer.setPrefSize(8000, 2000);
+            BFermer.setOnAction(e -> { Fenetre.close(); });
+
+
+            // GPModifications + Sligne + HBBoutons -> VBZoneFenetre
+            VBZoneFenetre.getChildren().addAll(GPModifications,SLigne,HBBoutons);
+
+            // définir les marges autour des objets dans VBZonesFenetre
+            VBox.setMargin(GPModifications, new Insets(15, 15, 10, 15));
+            VBox.setMargin(SLigne, new Insets(0, 15, 0, 15));
+            VBox.setMargin(HBBoutons, new Insets(10, 20, 15, 400));
+
+
+            SceneObj = new Scene(VBZoneFenetre,600,300);
+            Fenetre.setScene(SceneObj);
+
+            // charger les styles CSS
+            SceneObj.getStylesheets().add("couchePresentation/styleComboBox.css");
+
+            // paramétrer la fenêtre, puis l'afficher
+            Fenetre.setTitle("Modifier le stock");
+            Fenetre.setResizable(true);
+            Fenetre.setX(FenetrePrincipale.getInstance().getX() +
+                    (FenetrePrincipale.getInstance().getWidth() - Largeur) / 2);
+            Fenetre.setY(FenetrePrincipale.getInstance().getY() +
+                    (FenetrePrincipale.getInstance().getHeight() - Hauteur) / 2);
+            Fenetre.initOwner(FenetrePrincipale.getInstance());
+            Fenetre.initModality(Modality.APPLICATION_MODAL);
+            Fenetre.showAndWait();
 
         }
 
-        private void BChangerQuantie(Produit nouvProduit) {
+        private void BModifierQuantite()
+        {
+            try
+            {
+                Produit p = CBProduit.getValue();
+                p.setQuantiteStock(Integer.parseInt(TFChangementQuantite.getText()));
+                // /!\ pas idéale si de nouveau type de produit apparaissent ...
+                if (p instanceof Chemise){
+                    if(FabriqueDAO.getInstance().getInsProduitDAO().Modifier((Produit) p) == false)
+                    {
+                        new MessageBox(AlertType.INFORMATION, "La modification n'a pas eu lieu!");
+                    }
 
+                    else{
+                        new MessageBox(AlertType.INFORMATION, "La modification s'est bien déroulée!");
+                    }
+                }
+                else {
+                    if (FabriqueDAO.getInstance().getInstAlcoolDAO().Modifier((Alcool) p) == false)
+                    {
+                        new MessageBox(AlertType.INFORMATION, "La modification n'a pas eu lieu!");
+                    }else
+                    {
+                        new MessageBox(AlertType.INFORMATION, "La modification s'est bien déroulée!");
+                    }
+                }
+
+            }
+            catch (ExceptionAccessBD e)
+            {
+                GererErreur.GererErreurSQL("ModifierStock", "BModifierQuantite()", e.getMessage());
+            }
+            catch (Exception e)
+            {
+                GererErreur.GererErreurSQL("ModifierStock", "BModifierQuantite()", e.getMessage());
+                new MessageBox(AlertType.ERROR, "Problème inattendu lors de la modification du produit !");
+            }
+            Fenetre.close();
+
+        }
+
+        private void CBChangerQuantite(Produit nouvProduit)
+        {
+            TFChangementQuantite.setText(String.valueOf(nouvProduit.getQuantiteStock()));
+        }
+
+
+
+        private void BChangerQuantie(Produit nouvProduit)
+        {
             TFChangementQuantite.setText(String.valueOf(nouvProduit.getQuantiteStock()));
         }
     }

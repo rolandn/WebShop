@@ -1,7 +1,5 @@
 package ClassMetier;
 
-import com.intellij.openapi.vcs.history.VcsRevisionNumber;
-
 public class Produit
 {
     public int NumArticle;
@@ -61,10 +59,17 @@ public class Produit
     }
 
 
-    public void setQuantiteStock(int quantiteStock)
+    public int setQuantiteStock(int quantiteStock)
     {
         QuantiteStock = quantiteStock;
+        return QuantiteStock;
     }
+
+    @Override
+    public String toString() {
+        return Nom + " "+ NumArticle; }
+
+
 
     /**
      * Modifier une quantité en stock
