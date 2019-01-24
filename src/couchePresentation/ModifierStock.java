@@ -167,12 +167,18 @@ import coucheAccesDB.*;
         {
             try
             {
-                Produit p = CBProduit.getValue();
+                Produit produit = new Produit();
 
-                p.setQuantiteStock(Integer.parseInt(TFChangementQuantite.getText()));
-                p.setActive(Boolean.parseBoolean(TFArchiver.getText()));
+                produit.setActive(Boolean.parseBoolean(CBox.getText()));
+                produit.setQuantiteStock(Integer.parseInt(TFChangementQuantite.getText()));
 
-                    if(FabriqueDAO.getInstance().getInsProduitDAO().Modifier((Produit) p) == false)
+                    if (FabriqueDAO.getInstance().getInsProduitDAO().Modifier((Produit)produit) == false)
+//                Produit p = CBProduit.getValue();
+//
+//                p.setQuantiteStock(Integer.parseInt(TFChangementQuantite.getText()));
+//                p.setActive(Boolean.parseBoolean(TFArchiver.getText()));
+//
+//                    if(FabriqueDAO.getInstance().getInsProduitDAO().Modifier((Produit) p) == false)
                     {
                         new MessageBox(AlertType.INFORMATION, "Err 1 : La modification n'a pas eu lieu!");
                     }
