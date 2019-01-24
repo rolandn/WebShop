@@ -29,7 +29,7 @@ public class LigneComDAO extends BaseDAO<LigneCom>
             SqlConn.setAutoCommit(false);
             PreparedStatement sqlCmd =
                     SqlConn.prepareCall("select idLigne, idCom, idProduit, quantite" +
-                            "from ligne" + "where idLigne = ?");
+                            "from ligne" + "where idCom = ?");
             sqlCmd.setInt(1, num);
 
             ResultSet iRes = sqlCmd.executeQuery();
@@ -83,6 +83,36 @@ public class LigneComDAO extends BaseDAO<LigneCom>
 
     @Override
     public List<LigneCom> ListerTous() throws ExceptionAccessBD {
-        return null;
+        ArrayList<LigneCom> list = new ArrayList<>();
+
+        try
+        {
+            PreparedStatement sqlCmd = SqlConn.prepareCall("select IdLigne, IdProduit, quantite"+ "from ligne" + "where idCommande = ?");
+
+            ResultSet sqlRes = sqlCmd.executeQuery();
+
+            while (sqlRes.next() == true)
+                list.add(new LigneCom(sqlRes.getInt(1),
+                        sqlRes.getString(2),
+                        sqlRes.getString(3),
+                        sqlRes.getString(4),
+                        sqlRes.getString(5),
+                        sqlRes.getString(6)));
+            sqlRes.close();
+        }
+
+        catch (Exception e)
+        {
+            try {
+                SqlConn.rollback();
+                SqlConn.setAutoCommit(true);
+            }
+            catch (Exception e1)
+            {
+                throw new ExceptionAccessBD(e.getMessage());
+            }
+            throw new ExceptionAccessBD(e.getMessage());
+        }
+            return list;
     }
 }

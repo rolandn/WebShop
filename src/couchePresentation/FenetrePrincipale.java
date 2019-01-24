@@ -7,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import coucheAccesDB.*;
-import sun.misc.Launcher;
 
 
 public class FenetrePrincipale extends Application {
@@ -26,11 +25,17 @@ public class FenetrePrincipale extends Application {
     private MenuItem MIModifierClient = new MenuItem("Modifier un client");
     private MenuItem MIListerClient = new MenuItem("Lister les clients");
 
+
+    private Menu MenuCommande = new Menu("Commandes");
+    private MenuItem MIListerCommandes = new MenuItem("Détail d'une commande");
+    private MenuItem MILivraison = new MenuItem("Livraison");
+    private MenuItem MICOmmandesClient = new MenuItem("Commandes par client");
+
     private Menu MenuAlcool = new Menu("Alcools");
     private MenuItem MIAjouterAlcool = new MenuItem("Ajouter un alcool");
 
-    private Menu MenuStock = new Menu("Stock");
-    private MenuItem MIModifierStock = new MenuItem("Modifier le stock");
+    private Menu MenuStock = new Menu("Disponibilité des articles");
+    private MenuItem MIModifierStock = new MenuItem("Modifier le stock ou supprimer un produit");
 
     private Menu Quitter = new Menu("Quitter");
     private MenuItem QuitterProgramme = new MenuItem("Quitter le programme");
@@ -61,11 +66,13 @@ public class FenetrePrincipale extends Application {
         MenuClient.getItems().addAll(MIAjouterClient, MISupprimerClient, MIModifierClient, MIListerClient);
         MenuAlcool.getItems().addAll(MIAjouterAlcool);
         MenuStock.getItems().addAll(MIModifierStock);
+        MenuCommande.getItems().addAll(MIListerCommandes, MILivraison, MICOmmandesClient);
 
 
         BarreMenu.getMenus().addAll(MenuClient);
         BarreMenu.getMenus().addAll(MenuAlcool);
         BarreMenu.getMenus().addAll(MenuStock);
+        BarreMenu.getMenus().addAll(MenuCommande);
 
         BarreMenu.prefWidthProperty().bind(fenetre.widthProperty());
 
@@ -90,6 +97,18 @@ public class FenetrePrincipale extends Application {
 
         MIModifierStock.setOnAction(event -> {
             new ModifierStock();
+        });
+
+        MIListerCommandes.setOnAction(event -> {
+            new ListerCommandes();
+        });
+
+        MILivraison.setOnAction(event -> {
+            new Livraisons();
+        });
+
+        MICOmmandesClient.setOnAction(event -> {
+            new CommandesClient();
         });
 
         QuitterProgramme.setOnAction(event -> {

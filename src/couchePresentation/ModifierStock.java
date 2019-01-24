@@ -1,22 +1,21 @@
 package couchePresentation;
 
-import com.intellij.diagnostic.TestMessageBoxAction;
+
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import javafx.scene.control.Control;
+import javafx.scene.control.Labeled;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ButtonBase;
 import java.io.File;
-import java.nio.file.Files;
-import java.util.List;
-
 
 
 import ClassMetier.*;
@@ -24,8 +23,8 @@ import coucheAccesDB.*;
 
 
     public class ModifierStock {
-        private final int Largeur = 580;
-        private final int Hauteur = 300;
+        private final int Largeur = 900;
+        private final int Hauteur = 400;
 
         private Stage Fenetre = new Stage();
         private Scene SceneObj;
@@ -41,25 +40,22 @@ import coucheAccesDB.*;
         private TextField TFprix = new TextField();
         private TextField TFquantiteStock = new TextField();
         private Button BChargerImage = new Button("...");
-        private Button BModifier = new Button("Modifier");
+        private Button BModifier = new Button("Appliquer les modifications");
         private Button BFermer = new Button("Fermer");
         private Separator SLigne = new Separator();
         private Separator SLigne1 = new Separator();
         private ImageView IVImage = new ImageView();
         private File FichierSrc;
         private TextField TFChangementQuantite = new TextField();
+        private  TextField TFArchiver = new TextField();
         //private ComboBox<Produit> CBChoixProduit = new ComboBox();
         private GridPane GPModifications = new GridPane();
         private HBox HBSaisie = new HBox(15);
         private Label labChoixProduit = new Label("Choix du Produit :");
         private Label labQuantite = new Label("Quantité :");
-        private VBox VBZoneFenetre = new VBox();
+        private CheckBox CBox = new CheckBox("Cocher pour archiver le produit");
 
 
-
-        /**
-         *
-         */
 
         public ModifierStock() {
 
@@ -67,9 +63,6 @@ import coucheAccesDB.*;
              * On affiche d'abord la liste des produits
              */
 
-
-           // CBEleves.setItems(FXCollections.observableArrayList(
-             //       FabriqueDAO.getInstance().getInstEleveDAO().ListerTous()));
 
             try {
 
@@ -107,18 +100,23 @@ import coucheAccesDB.*;
 
             // LAYOUT ----------------------------------------------------------------
 
+            // Fenêtre principale
+
+
+
             //taille TFQuantite
             TFChangementQuantite.setMaxWidth(80);
-            CBProduit.setPrefSize(80,20);
+            CBProduit.setPrefSize(300,20);
 
             // Taille liste des produits
-            CBProduit.setMaxWidth(120);
+            CBProduit.setMaxWidth(300);
 
             //Construction du gridpane
             GPModifications.add(labChoixProduit,0,0);
             GPModifications.add(CBProduit,1,0);
             GPModifications.add(labQuantite,0,1);
             GPModifications.add(TFChangementQuantite, 1, 1);
+            GPModifications.add(CBox, 0, 2);
 
 
             // espacement entre les cellules de GPSaisies
@@ -131,29 +129,29 @@ import coucheAccesDB.*;
 
 
             // paramétrer les boutons BAjouter et BFermer
-            BModifier.setPrefSize(5000, 5000);
+            BModifier.setPrefSize(480, 70);
             BModifier.setOnAction(event -> {BModifierQuantite();});
-            BFermer.setPrefSize(8000, 2000);
+            BFermer.setPrefSize(300, 70);
             BFermer.setOnAction(e -> { Fenetre.close(); });
 
 
             // GPModifications + Sligne + HBBoutons -> VBZoneFenetre
-            VBZoneFenetre.getChildren().addAll(GPModifications,SLigne,HBBoutons);
+            VBZonesFenetre.getChildren().addAll(GPModifications,SLigne,HBBoutons);
 
             // définir les marges autour des objets dans VBZonesFenetre
             VBox.setMargin(GPModifications, new Insets(15, 15, 10, 15));
             VBox.setMargin(SLigne, new Insets(0, 15, 0, 15));
-            VBox.setMargin(HBBoutons, new Insets(10, 20, 15, 400));
+            VBox.setMargin(HBBoutons, new Insets(10, 20, 15, 20));
 
-
-            SceneObj = new Scene(VBZoneFenetre,600,300);
+            // VBZonesFenetre -> Scene; Scene -> Stage
+            SceneObj = new Scene(VBZonesFenetre, Largeur, Hauteur);
             Fenetre.setScene(SceneObj);
 
             // charger les styles CSS
             SceneObj.getStylesheets().add("couchePresentation/styleComboBox.css");
 
             // paramétrer la fenêtre, puis l'afficher
-            Fenetre.setTitle("Modifier le stock");
+            Fenetre.setTitle("Modifier le stock ou supprimer un produit");
             Fenetre.setResizable(true);
             Fenetre.setX(FenetrePrincipale.getInstance().getX() +
                     (FenetrePrincipale.getInstance().getWidth() - Largeur) / 2);
@@ -170,27 +168,18 @@ import coucheAccesDB.*;
             try
             {
                 Produit p = CBProduit.getValue();
+
                 p.setQuantiteStock(Integer.parseInt(TFChangementQuantite.getText()));
-                // /!\ pas idéale si de nouveau type de produit apparaissent ...
-                if (p instanceof Chemise){
+                p.setActive(Boolean.parseBoolean(TFArchiver.getText()));
+
                     if(FabriqueDAO.getInstance().getInsProduitDAO().Modifier((Produit) p) == false)
                     {
-                        new MessageBox(AlertType.INFORMATION, "La modification n'a pas eu lieu!");
+                        new MessageBox(AlertType.INFORMATION, "Err 1 : La modification n'a pas eu lieu!");
                     }
 
                     else{
                         new MessageBox(AlertType.INFORMATION, "La modification s'est bien déroulée!");
                     }
-                }
-                else {
-                    if (FabriqueDAO.getInstance().getInstAlcoolDAO().Modifier((Alcool) p) == false)
-                    {
-                        new MessageBox(AlertType.INFORMATION, "La modification n'a pas eu lieu!");
-                    }else
-                    {
-                        new MessageBox(AlertType.INFORMATION, "La modification s'est bien déroulée!");
-                    }
-                }
 
             }
             catch (ExceptionAccessBD e)
@@ -200,21 +189,16 @@ import coucheAccesDB.*;
             catch (Exception e)
             {
                 GererErreur.GererErreurSQL("ModifierStock", "BModifierQuantite()", e.getMessage());
-                new MessageBox(AlertType.ERROR, "Problème inattendu lors de la modification du produit !");
+                new MessageBox(AlertType.ERROR, "Err 2 : Problème inattendu lors de la modification du produit !");
             }
             Fenetre.close();
 
         }
 
-        private void CBChangerQuantite(Produit nouvProduit)
-        {
-            TFChangementQuantite.setText(String.valueOf(nouvProduit.getQuantiteStock()));
-        }
-
-
 
         private void BChangerQuantie(Produit nouvProduit)
         {
             TFChangementQuantite.setText(String.valueOf(nouvProduit.getQuantiteStock()));
+            TFArchiver.setText(String.valueOf(nouvProduit.getActive()));
         }
     }

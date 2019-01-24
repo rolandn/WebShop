@@ -7,7 +7,7 @@ public class Chemise extends Produit
     private String Matiere;
 
     public Chemise(Chemise e) {
-        super(e.getNumArticle(), e.getNom(), e.getNomImage(), e.getPrix(), e.getQuantiteStock());
+        super(e.getNumArticle(), e.getNom(), e.getNomImage(), e.getPrix(), e.getQuantiteStock(), e.getActive());
         Taille = e.getTaille();
         Couleur = e.getCouleur();
         Matiere = e.getMatiere();
@@ -38,8 +38,8 @@ public class Chemise extends Produit
     }
 
 
-    public Chemise(int numArticle, String nom, String nomImage, int prix, int quantiteStock, int taille, String couleur, String matiere) {
-        super(numArticle, nom, nomImage, prix, quantiteStock);
+    public Chemise(int numArticle, String nom, String nomImage, int prix, int quantiteStock, boolean active, int taille, String couleur, String matiere) {
+        super(numArticle, nom, nomImage, prix, quantiteStock, active);
         Taille = taille;
         Couleur = couleur;
         Matiere = matiere;

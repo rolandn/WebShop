@@ -7,15 +7,15 @@ public class Alcool extends Produit {
 
 
     public Alcool(Alcool e) {
-        super(e.getNumArticle(), e.getNom(), e.getNomImage(), e.getPrix(), e.getQuantiteStock());
+        super(e.getNumArticle(), e.getNom(), e.getNomImage(), e.getPrix(), e.getQuantiteStock(), e.getActive());
         DegreAlcool = e.getDegreAlcool();
         Gout = e.getGout();
         Provenance = e.getProvenance();
     }
 
-    public Alcool(int numArticle, String nom, String nomImage, int prix, int quantiteStock, int degreAlcool, String gout, String provenance)
+    public Alcool(int numArticle, String nom, String nomImage, int prix, int quantiteStock, boolean active, int degreAlcool, String gout, String provenance)
     {
-        super(numArticle, nom, nomImage, prix, quantiteStock);
+        super(numArticle, nom, nomImage, prix, quantiteStock, active);
         DegreAlcool = degreAlcool;
         Gout = gout;
         Provenance = provenance;
@@ -25,6 +25,7 @@ public class Alcool extends Produit {
     public Alcool() {
         super();
     }
+
 
     public int getDegreAlcool() {
         return DegreAlcool;
@@ -70,6 +71,11 @@ public class Alcool extends Produit {
     public int setPrix(int prix){
         Prix = prix;
         return prix;
+    }
+
+    public boolean setActive (boolean active) {
+        Active = active;
+        return active;
     }
 
     public int setQuantiteStock(int quantiteStock){

@@ -17,7 +17,7 @@ public class LigneCom
     public int getIdProduit() {return IdProduit;}
     public int getQuantite () {return Quantite;}
 
-    public LigneCom() {}
+    public LigneCom(int anInt, String string, String sqlResString, String resString, String s, String string1) {}
 
     public LigneCom(LigneCom ligneCom)
     {

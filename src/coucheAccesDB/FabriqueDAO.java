@@ -1,9 +1,11 @@
 package coucheAccesDB;
 
+import ClassMetier.Commande;
 import org.jetbrains.annotations.Contract;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
 public class FabriqueDAO
 {
@@ -46,5 +48,8 @@ public class FabriqueDAO
 
     public ProduitDAO getInsProduitDAO() {return new ProduitDAO(SqlConn);}
 
+    public CommandeDAO getInsCommandeDAO() {return  new CommandeDAO(SqlConn);}
 
+
+    public LigneComDAO getInsLigneComDAO() {return new LigneComDAO(SqlConn);}
 }

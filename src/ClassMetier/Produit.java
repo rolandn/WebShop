@@ -7,6 +7,7 @@ public class Produit
     public String NomImage;
     public int Prix;
     public int QuantiteStock;
+    public boolean Active;
 
     /**
      * Contructeurs
@@ -20,15 +21,21 @@ public class Produit
         NomImage = produit.getNomImage();
         Prix = produit.getPrix();
         QuantiteStock = produit.getQuantiteStock();
+        Active = produit.getActive();
     }
 
-    public Produit (int numArticle, String nom, String nomImage, int prix, int quantiteStock)
+    public Produit (int numArticle, String nom, String nomImage, int prix, int quantiteStock, boolean active)
     {
         NumArticle = numArticle;
         Nom = nom;
         NomImage =nomImage;
         Prix = prix;
         QuantiteStock = quantiteStock;
+        Active = active;
+    }
+
+    public Produit(int anInt, String string, int quantiteCommande, double prixTotal) {
+
     }
 
     public Produit() {
@@ -42,6 +49,16 @@ public class Produit
     public int getNumArticle() {
         return NumArticle;
     }
+
+    public boolean getActive() {
+        return Active;
+    }
+
+    public boolean setActive(boolean active) {
+
+        return active;
+    }
+
     public String getNom() {
         return Nom;
     }
@@ -68,6 +85,7 @@ public class Produit
     @Override
     public String toString() {
         return Nom + " "+ NumArticle; }
+
 
 
 

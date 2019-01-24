@@ -63,7 +63,7 @@ public class ProduitDAO extends BaseDAO<Produit>
 
         try
         {
-            PreparedStatement sqlCmd = SqlConn.prepareCall("select NumArticle, nom, nomImage, prix, quantiteStock from produit");
+            PreparedStatement sqlCmd = SqlConn.prepareCall("select NumArticle, nom, nomImage, prix, quantiteStock, Active from produit");
 
             ResultSet sqlRes = sqlCmd.executeQuery();
 
@@ -72,7 +72,8 @@ public class ProduitDAO extends BaseDAO<Produit>
                         sqlRes.getString(2),
                         sqlRes.getString(3),
                         sqlRes.getInt(4),
-                        sqlRes.getInt(5)));
+                        sqlRes.getInt(5),
+                        sqlRes.getBoolean(6)));
             sqlRes.close();
         }
 
@@ -83,4 +84,40 @@ public class ProduitDAO extends BaseDAO<Produit>
 
         return list;
     }
+
+    public  List<Produit> ListerCommande(int idCommande)throws ExceptionAccessBD
+    {
+        List<Produit> liste = new ArrayList<>();
+
+        try {
+            PreparedStatement sqlCmd =
+                    SqlConn.prepareCall("SELECT produit.NumArticle, produit.nom, ligne.quantite,"+
+                            "produit.prix,produit.nomImage " +
+                            "FROM produit, commande, ligne " +
+                            "where ligne.idCommande = commande.idCommande " +
+                            "AND ligne.idProduit = produit.NumArticle "+
+                            "AND commande.idCommande = ? "
+                    );
+
+            sqlCmd.setInt(1,idCommande);
+            ResultSet sqlRes = sqlCmd.executeQuery();
+
+            while (sqlRes.next() == true)
+            {
+                int quantiteCommande = sqlRes.getInt(3);
+                double prixTotal= quantiteCommande*sqlRes.getDouble(4);
+                liste.add(new Produit(sqlRes.getInt(1),
+                        sqlRes.getString(2),
+                        quantiteCommande,
+                        prixTotal));
+            }
+
+            sqlRes.close();
+        } catch (Exception e) {
+            throw new ExceptionAccessBD(e.getMessage());
+        }
+
+        return liste;
+    }
+
 }

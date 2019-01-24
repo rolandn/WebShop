@@ -30,8 +30,8 @@ public class AlcoolDAO extends BaseDAO<Alcool>
         {
             SqlConn.setAutoCommit(false);
             PreparedStatement sqlCmd =
-                    SqlConn.prepareCall("select numArticle, nom, nomImage, prix, quantiteStock" +
-                            "from article" + "where numArticle = ?");
+                    SqlConn.prepareCall("select numArticle, nom, nomImage, prix, quantiteStock, Active" +
+                            "from article" + "where numArticle = ? and Active = 1");
             sqlCmd.setInt(1, num);
 
             sqlCmd =
@@ -53,9 +53,10 @@ public class AlcoolDAO extends BaseDAO<Alcool>
                         iRes.getString(3),    // nomImage
                         iRes.getInt(4),    // prix
                         iRes.getInt(5),    // quantiteStock
-                        iRes.getInt(6),   // degreAlcool
-                        iRes.getString(7),    // gout
-                        iRes.getString(8));  // provenance
+                        iRes.getBoolean(6), // Active
+                        iRes.getInt(7),   // degreAlcool
+                        iRes.getString(8),    // gout
+                        iRes.getString(9));  // provenance
             }
             iRes.close();
             return alcool;
