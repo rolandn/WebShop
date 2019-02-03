@@ -37,7 +37,7 @@ public class MsgBox extends BaseFenetre
          */
         public MsgBox(Stage fenParent, AlertType typeErreur, String msgErreur)
         {
-            super(fenParent, "MsgBoxVue.xml", "", 470, 100);
+            super(fenParent, "MsgBoxVue.xml", "", 750, 150);
 // fixer l'image et le message dans la fenêtre
             if(typeErreur == AlertType.INFORMATION)
             {

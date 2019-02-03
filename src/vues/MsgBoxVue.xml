@@ -13,7 +13,7 @@
                 <Label fx:id="LMsgErreur" text="" />
             </children>
         </HBox>
-        <Button fx:id="BFermer" prefWidth="80" prefHeight="20" onAction="#BFermer" text="Fermer"
+        <Button fx:id="BFermer" prefWidth="150" prefHeight="20" onAction="#BFermer" text="Fermer"
                 AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15" />
     </children>
 </AnchorPane>

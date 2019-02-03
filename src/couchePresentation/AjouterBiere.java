@@ -2,6 +2,7 @@ package couchePresentation;
 
 import ClassMetier.*;
 import coucheAccesDB.*;
+import ClassMetier.ExceptionMetier;
 
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
@@ -106,7 +107,7 @@ public class AjouterBiere extends BaseFenetre {
                 if (FichierSrc != null)
                 {
                     File FichierDst = new File(System.getProperty("user.dir") +
-                            "/imgs/imgseleves/" + FichierSrc.getName());
+                            "/imgs/" + FichierSrc.getName());
                     Files.copy(FichierSrc.toPath(), FichierDst.toPath(), REPLACE_EXISTING);
                 }
 
@@ -116,7 +117,7 @@ public class AjouterBiere extends BaseFenetre {
         {
             GererErreur.ErreurGen("AjouterBiere", "BAjouterBiere()", e.getMessage());
             new MsgBox(this, AlertType.ERROR,
-                    "Problème de base de données lors de l'ajout de l'élève!");
+                    "Problème de base de données lors de l'ajout de la bière!");
         }
 
         /*catch (ExceptionMetier e)
@@ -127,7 +128,7 @@ public class AjouterBiere extends BaseFenetre {
         catch (Exception e)
         {
             GererErreur.ErreurGen("AjouterBiere", "BAjouterBiere()", e.getMessage());
-            new MsgBox(this, AlertType.ERROR, "Problème inattendu lors de l'ajout de l'élève!");
+            new MsgBox(this, AlertType.ERROR, "Problème inattendu lors de l'ajout de la bière !");
         }
         close();
     }

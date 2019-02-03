@@ -35,12 +35,12 @@
                         <ComboBox fx:id="CBBiere" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="oui" />
-                                    <String fx:value="non" />
+                                    <String fx:value="1" />
+                                    <String fx:value="0" />
                                 </FXCollections>
                             </items>
                             <value>
-                                <String fx:value="oui" />
+                                <String fx:value="1" />
                             </value>
                         </ComboBox>
 
