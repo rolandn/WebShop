@@ -114,9 +114,9 @@ public class BiereDAO extends BaseDAO<Biere>
             sqlCmd = SqlConn.prepareCall("insert into biere values(?,?,?,?)");
 
             sqlCmd.setInt(1, NumArticle);
-            sqlCmd.setBoolean(2, obj.getAlcool());
-            sqlCmd.setString(3, obj.getGout());
-            sqlCmd.setString(4, obj.getRecipient());
+            sqlCmd.setString(2, obj.getGout());
+            sqlCmd.setString(3, obj.getRecipient());
+            sqlCmd.setBoolean(4, obj.getAlcool());
 
             sqlCmd.executeUpdate();
             SqlConn.commit();
