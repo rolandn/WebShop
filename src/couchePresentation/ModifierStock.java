@@ -1,3 +1,4 @@
+/*
 package couchePresentation;
 
 
@@ -57,11 +58,13 @@ import coucheAccesDB.*;
 
 
 
-        public ModifierStock() {
+        public ModifierStock(Stage fenetre) {
 
-            /**
+            */
+/**
              * On affiche d'abord la liste des produits
-             */
+             *//*
+
 
 
             try {
@@ -69,7 +72,7 @@ import coucheAccesDB.*;
                 CBProduit.setItems(FXCollections.observableArrayList(
                         FabriqueDAO.getInstance().getInsProduitDAO().ListerTous()
                 ));
-            } catch (ExceptionAccessBD e) {
+            } catch (ExeceptionAccessBD e) {
                 GererErreur.GererErreurSQL("ModifierStock, ", "ModifierProduit()", e.getMessage());
                 new MessageBox(AlertType.INFORMATION,
                         "Un problème est survenu lors du listage des produits.");
@@ -86,9 +89,11 @@ import coucheAccesDB.*;
             CBProduit.getSelectionModel().selectFirst();
 
 
-            /**
+            */
+/**
              * On gérer le changement de Produit courant dans la boîte combo CBChoixProduit
-             */
+             *//*
+
 
             CBProduit.getSelectionModel().selectedItemProperty().addListener((obs,
                                                                                    ancProduit, nouvProduit) ->
@@ -106,6 +111,7 @@ import coucheAccesDB.*;
 
             //taille TFQuantite
             TFChangementQuantite.setMaxWidth(80);
+           // TFChangementID.setMaxWidth(80);
             CBProduit.setPrefSize(300,20);
 
             // Taille liste des produits
@@ -171,6 +177,8 @@ import coucheAccesDB.*;
 
                 produit.setActive(Boolean.parseBoolean(CBox.getText()));
                 produit.setQuantiteStock(Integer.parseInt(TFChangementQuantite.getText()));
+            //    produit.setNumArticle(Integer.parseInt(TFChangementID.getText()));
+
 
                     if (FabriqueDAO.getInstance().getInsProduitDAO().Modifier((Produit)produit) == false)
 //                Produit p = CBProduit.getValue();
@@ -207,4 +215,4 @@ import coucheAccesDB.*;
             TFChangementQuantite.setText(String.valueOf(nouvProduit.getQuantiteStock()));
             TFArchiver.setText(String.valueOf(nouvProduit.getActive()));
         }
-    }
+    }*/

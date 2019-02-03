@@ -1,3 +1,4 @@
+/*
 package couchePresentation;
 
 import javafx.application.Application;
@@ -41,21 +42,25 @@ public class FenetrePrincipale extends Application {
     private MenuItem QuitterProgramme = new MenuItem("Quitter le programme");
 
 
-    /**
+    */
+/**
      * Méthode statique qui retourne l'objet Stage de la fenêtre principale
      *
      * @return l'objet Stage de la fenêtre
-     */
+     *//*
+
 
     public static Stage getInstance()
     {
         return Instance;
     }
 
-    /**
+    */
+/**
      * Constructeur: il ajoute tous les objets à la fenêtre
      * @param fenetre: l'objet Stage représentant la fenêtre principale
-     */
+     *//*
+
 
     @Override
     public void start(Stage fenetre) {
@@ -78,7 +83,8 @@ public class FenetrePrincipale extends Application {
 
         // Actions liées éléments de menu
 
-        MIAjouterClient.setOnAction(event -> {
+       */
+/* MIAjouterClient.setOnAction(event -> {
             new AjouterClient();
         });
         MISupprimerClient.setOnAction(event -> {
@@ -110,6 +116,7 @@ public class FenetrePrincipale extends Application {
         MICOmmandesClient.setOnAction(event -> {
             new CommandesClient();
         });
+*//*
 
         QuitterProgramme.setOnAction(event -> {
             System.exit(0);
@@ -132,27 +139,30 @@ public class FenetrePrincipale extends Application {
         fenetre.centerOnScreen();
         fenetre.show();
     }
-        /**
+        */
+/**
          * Méthode exécutée au démarrage de l'application
-         */
+         *//*
 
-        public static void main(String[] args)
-        {
-            try
-            {
-                FabriqueDAO.getInstance().creerConnexion();
-            }
-            catch (ExceptionAccessBD e)
-            {
-                GererErreur.GererErreurGen("FenêtrePrincipale", "start()", e.getMessage() );
-                System.out.println("problème pour se connecter à la DB");
-                System.exit(0);
-            }
+
+//        public static void main(String[] args)
+//        {
+//            try
+//            {
+//                FabriqueDAO.getInstance().creerConnexion();
+//            }
+//            catch (ExceptionAccessBD e)
+//            {
+//                GererErreur.GererErreurGen("FenêtrePrincipale", "start()", e.getMessage() );
+//                System.out.println("problème pour se connecter à la DB");
+//                System.exit(0);
+//            }
 
 
         // Charger la fenêtre principale
 
-        launch(args);
-    }
+//        launch(args);
+//    }
 
 }
+*/

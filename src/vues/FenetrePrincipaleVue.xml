@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu text="Bières">
+                    <items>
+                        <MenuItem text="Lister les bières" onAction="#MListerBiere"/>
+                        <MenuItem text="Ajouter une bière" onAction="#MAjouterBiere"/>
+                        <MenuItem text="Modifier la quantité en stock" />
+                        <MenuItem text="Archiver/désarchiver une bière" />
+                    </items>
+                </Menu>
+
+                <Menu text="Alcools">
+                    <items>
+                        <MenuItem text="Lister les alcools" onAction="#MListerAlcool"/>
+                        <MenuItem text="Ajouter une alcool" />
+                        <MenuItem text="Modifier la quantité en stock" />
+                        <MenuItem text="Archiver/désarchiver un alcool" />
+                    </items>
+                </Menu>
+
+
+                <Menu text="Quitter">
+                    <items>
+                        <MenuItem text="Quitter le programme" onAction="#MQuitter"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
