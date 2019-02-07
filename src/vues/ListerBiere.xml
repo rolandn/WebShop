@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.cell.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <TableView fx:id="TVBiere" prefWidth="3000" prefHeight ="3000" AnchorPane.topAnchor="15"
+                   AnchorPane.leftAnchor="15">
+            <columns>
+                <TableColumn fx:id="TCNumArticle" text="Numéro d'article" minWidth="50">
+                    <cellValueFactory><PropertyValueFactory property="NumArticle" />
+                    </cellValueFactory>
+                </TableColumn>
+
+            <!--    <TableColumn fx:id="TCNom" text="Nom" minWidth="160">
+                    <cellValueFactory><PropertyValueFactory property="Nom" />
+                    </cellValueFactory>
+                </TableColumn>  -->
+
+                <TableColumn fx:id="TCGout" text="Goût" minWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="Gout" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="TCRecipient" text="Recipient" minWidth="160">
+                    <cellValueFactory><PropertyValueFactory property="Recipient" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="TCAlcolise" text="Alcolisé ?" minWidth="160">
+                    <cellValueFactory><PropertyValueFactory property="Alcolise" />
+                    </cellValueFactory>
+                </TableColumn>
+
+            </columns>
+        </TableView>
+        <ImageView fx:id="IVImage" AnchorPane.topAnchor="55" AnchorPane.rightAnchor="15" />
+        <Button fx:id="BFermer" prefWidth="250" prefHeight="20" onAction="#BFermer" text="Fermer"
+                AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15" />
+    </children>
+</AnchorPane>

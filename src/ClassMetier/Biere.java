@@ -3,20 +3,20 @@ package ClassMetier;
 public class Biere extends Produit {
     private String Gout;
     private String Recipient;
-    private Boolean Alcool;
+    private Boolean Alcoolise;
 
 
     public Biere(Biere e) {
         super(e.getNumArticle(), e.getNom(), e.getNomImage(), e.getPrix(), e.getQuantiteStock(), e.getActive());
-        Alcool = e.getAlcool();
+        Alcoolise = e.getAlcool();
         Gout = e.getGout();
         Recipient = e.getRecipient();
     }
 
-    public Biere(int numArticle, String nom, String nomImage, int prix, int quantiteStock, boolean active, boolean alcool, String gout, String recipient)
+    public Biere(int numArticle, String nom, String nomImage, int prix, int quantiteStock, boolean active, Boolean alcoolise, String gout, String recipient)
     {
         super(numArticle, nom, nomImage, prix, quantiteStock, active);
-        Alcool = alcool;
+        Alcoolise = alcoolise;
         Gout = gout;
         Recipient = recipient;
 
@@ -26,16 +26,19 @@ public class Biere extends Produit {
         super();
     }
 
+    public Biere(int anInt, String string, String string1, boolean aBoolean) {
+    }
+
     /**
      * Méthodes GET SET pour les variables venant de Biere
      */
 
 
-    public boolean getAlcool() {
-        return this.Alcool;
+    public Boolean getAlcool() {
+        return this.Alcoolise;
     }
 
-    public void setAlcool(Boolean Alcool) {this.Alcool = Alcool;}
+    public void setAlcool(Boolean alcoolise) {this.Alcoolise = alcoolise;}
 
 
 
@@ -78,10 +81,7 @@ public class Biere extends Produit {
         return prix;
     }
 
-    public boolean setAlcool (boolean active) {
-        Active = active;
-        return active;
-    }
+
 
     public int setQuantiteStock(int quantiteStock){
         QuantiteStock = quantiteStock;

@@ -26,13 +26,13 @@ import java.nio.file.Files;
 public class AjouterBiere extends BaseFenetre {
 
 
-    @FXML private TextField TFNumArticle;
+ //   @FXML private TextField TFNumArticle;
     @FXML private TextField TFNom;
     @FXML private TextField TFNomImage;
     @FXML private TextField TFPrix;
     @FXML private TextField TFQuantiteStock;
     @FXML private TextField TFGout;
-    @FXML private TextField CBAlcool;
+    @FXML private ComboBox CBbiere;
     @FXML private TextField TFRecipient;
     @FXML private javafx.scene.image.ImageView IVImage;
 //    @FXML private ImageView IVImage;
@@ -87,14 +87,14 @@ public class AjouterBiere extends BaseFenetre {
             Biere biere = new Biere();
 
 
-            biere.setNumArticle(Integer.parseInt(TFNumArticle.getText()));
+  //          biere.setNumArticle(Integer.parseInt(TFNumArticle.getText()));
             biere.setNom(TFNom.getText());
             biere.setNomImage(TFNomImage.getText());
             biere.setPrix(Integer.parseInt(TFPrix.getText()));
             biere.setQuantiteStock(Integer.parseInt(TFQuantiteStock.getText()));
             biere.setGout(TFGout.getText());
             biere.setRecipient(TFRecipient.getText());
-            biere.setAlcool(CBAlcool.getText());
+            biere.setAlcool(("oui".equals(CBbiere.getValue().toString())));
 
             if ((FabriqueDAO.getInstance().getInstBiereDAO()).Ajouter(biere) == false)
                 new MsgBox(this, AlertType.INFORMATION, "L'ajout n'a pas eu lieu!");

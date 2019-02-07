@@ -92,13 +92,14 @@ public class BiereDAO extends BaseDAO<Biere>
 
             sqlCmd.close();
 
-            sqlCmd = SqlConn.prepareCall("insert into produit values(?,?,?,?,?)");
+            sqlCmd = SqlConn.prepareCall("insert into produit values(?,?,?,?,?,1)");
 
             sqlCmd.setInt(1, NumArticle);
             sqlCmd.setString(2, obj.getNom());
             sqlCmd.setString(3, obj.getNomImage());
             sqlCmd.setInt(4, obj.getPrix());
             sqlCmd.setInt(5, obj.getQuantiteStock());
+        //    sqlCmd.setBoolean(6,obj.getActive());
 
             sqlCmd.executeUpdate();
 
@@ -118,12 +119,11 @@ public class BiereDAO extends BaseDAO<Biere>
             sqlCmd.setString(3, obj.getRecipient());
             sqlCmd.setBoolean(4, obj.getAlcool());
 
-            sqlCmd.executeUpdate();
+            int iRes = sqlCmd.executeUpdate();
             SqlConn.commit();
             SqlConn.setAutoCommit(true);
 
-            if ((sqlCmd.executeUpdate() == 0) ? false : true) return true;
-            else return false;
+           return (iRes == 0)? false : true;
         }
 
         catch (Exception e)
@@ -146,9 +146,30 @@ public class BiereDAO extends BaseDAO<Biere>
     }
 
     @Override
-    public List<Biere> ListerTous() {
-        return null;
+    public List<Biere> ListerTous() throws ExeceptionAccessBD
+    {
+        ArrayList<Biere> liste = new ArrayList<Biere>();
+        try
+        {
+            PreparedStatement sqlCmd = SqlConn.prepareCall(
+                    "select NumArticle, Gout, Recipient, Alcolise " +
+                            "from biere " +
+                            "order by NumArticle asc");
+            ResultSet sqlRes = sqlCmd.executeQuery();
+            while (sqlRes.next() == true)
+                liste.add(new Biere(sqlRes.getInt(1),
+                        sqlRes.getString(2),
+                        sqlRes.getString(3),
+                        sqlRes.getBoolean(4)));
+            sqlRes.close();
+        }
+        catch(Exception e)
+        {
+            throw new ExeceptionAccessBD(e.getMessage());
+        }
+        return liste;
     }
+
 
     @Override
     public boolean Supprimer(int num) {

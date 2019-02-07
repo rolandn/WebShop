@@ -13,8 +13,8 @@
             <children>
                 <GridPane hgap="8" vgap="8">
                     <children>
-                        <Label text="NumArticle: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <TextField fx:id="TFNumArticle" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                      <!--  <Label text="NumArticle: " GridPane.columnIndex="0" GridPane.rowIndex="0" />  -->
+                      <!--  <TextField fx:id="TFNumArticle" GridPane.columnIndex="1" GridPane.rowIndex="0" />  -->
 
                         <Label text="Nom: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
                         <TextField fx:id="TFNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -32,15 +32,15 @@
                         <TextField fx:id="TFRecipient" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 
                         <Label text="Contient de l'alcool ?: " GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                        <ComboBox fx:id="CBBiere" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <ComboBox fx:id="CBbiere" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="1" />
-                                    <String fx:value="0" />
+                                    <String fx:value="oui" />
+                                    <String fx:value="non" />
                                 </FXCollections>
                             </items>
                             <value>
-                                <String fx:value="1" />
+                                <String fx:value="oui" />
                             </value>
                         </ComboBox>
 

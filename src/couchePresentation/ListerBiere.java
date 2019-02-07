@@ -23,12 +23,22 @@ public class ListerBiere extends BaseFenetre {
     public ListerBiere(Stage fenParent) {
 
         // créer la fenêtre
-        super(fenParent, "ListerBiere.xml", "Lister les bières", 475, 300);
+        super(fenParent, "ListerBiere.xml", "Lister les bières", 1000, 1000);
 
         // ajouter la liste des bières à la table TVBiere
 
-        TVBiere.itemsProperty().setValue(FXCollections.observableArrayList(
-                FabriqueDAO.getInstance().getInstBiereDAO().ListerTous()));
+        try {
+            TVBiere.itemsProperty().setValue(FXCollections.observableArrayList(
+                    FabriqueDAO.getInstance().getInstBiereDAO().ListerTous()));
+        }
+
+        catch (ExeceptionAccessBD e) {
+            GererErreur.ErreurSQL("ListerBiere", "ListerBiere()", e.getMessage());
+            new MsgBox(this, AlertType.ERROR,
+                    "Problème de base de données lors du listage des bières!");
+            return;
+        }
+
         if (TVBiere.getItems().size() == 0)
         {
             new MsgBox(this, AlertType.INFORMATION,
@@ -41,9 +51,9 @@ public class ListerBiere extends BaseFenetre {
                                                                         nouvBiere) ->
         {
             if (nouvBiere != null)
-                IVImage.setImage(new Image("file:imgs/imgsprofs/" + nouvBiere.getNomImage()));
+                IVImage.setImage(new Image("file:imgs/" + nouvBiere.getNomImage()));
         });
-        // sélectionner le 1er prof dans la table TVProfs
+        // sélectionner le 1er biere dans la table TVBiere
         TVBiere.getSelectionModel().selectFirst();
         // afficher la fenêtre
         showAndWait();
