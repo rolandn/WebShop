@@ -7,9 +7,9 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml">
     <children>
         <TableView fx:id="TVBiere" prefWidth="3000" prefHeight ="3000" AnchorPane.topAnchor="15"
-                   AnchorPane.leftAnchor="15">
+                   AnchorPane.leftAnchor="10">
             <columns>
-                <TableColumn fx:id="TCNumArticle" text="Numéro d'article" minWidth="50">
+                <TableColumn fx:id="TCNumArticle" text="Numéro d'article" minWidth="5">
                     <cellValueFactory><PropertyValueFactory property="NumArticle" />
                     </cellValueFactory>
                 </TableColumn>
@@ -38,6 +38,6 @@
         </TableView>
         <ImageView fx:id="IVImage" AnchorPane.topAnchor="55" AnchorPane.rightAnchor="15" />
         <Button fx:id="BFermer" prefWidth="250" prefHeight="20" onAction="#BFermer" text="Fermer"
-                AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15" />
+                AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="15" />
     </children>
 </AnchorPane>

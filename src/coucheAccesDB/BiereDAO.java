@@ -152,8 +152,8 @@ public class BiereDAO extends BaseDAO<Biere>
         try
         {
             PreparedStatement sqlCmd = SqlConn.prepareCall(
-                    "select NumArticle, Gout, Recipient, Alcolise " +
-                            "from biere " +
+                    "select NumArticle, Gout, Recipient, Alcolise" +
+                            "from biere" +
                             "order by NumArticle asc");
             ResultSet sqlRes = sqlCmd.executeQuery();
             while (sqlRes.next() == true)

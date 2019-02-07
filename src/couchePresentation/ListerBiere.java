@@ -23,7 +23,7 @@ public class ListerBiere extends BaseFenetre {
     public ListerBiere(Stage fenParent) {
 
         // créer la fenêtre
-        super(fenParent, "ListerBiere.xml", "Lister les bières", 1000, 1000);
+        super(fenParent, "ListerBiere.xml", "Lister les bières", 800, 900);
 
         // ajouter la liste des bières à la table TVBiere
 
