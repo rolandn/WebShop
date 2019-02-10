@@ -44,7 +44,7 @@ public class FabriqueDAO
 
     public BiereDAO getInstBiereDAO() {return new BiereDAO(SqlConn);}
 
- //   public ProduitDAO getInsProduitDAO() {return new ProduitDAO(SqlConn);}
+    public ProduitDAO getInsProduitDAO() {return new ProduitDAO(SqlConn);}
 
     public CommandeDAO getInsCommandeDAO() {return  new CommandeDAO(SqlConn);}
 

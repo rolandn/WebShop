@@ -51,7 +51,7 @@ public class Produit
         return NumArticle;
     }
 
-    public int setNumArticle() {
+    public int setNumArticle(int numArticle) {
         return NumArticle;
     }
 
