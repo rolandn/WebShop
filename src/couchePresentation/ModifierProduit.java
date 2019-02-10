@@ -143,9 +143,9 @@ public class ModifierProduit extends BaseFenetre
         }*/
         catch (Exception e)
         {
-            GererErreur.ErreurGen("ModifierEleve", "BModifierEleve()", e.getMessage());
+            GererErreur.ErreurGen("ModifierProduit", "BModifierProduit()", e.getMessage());
             new MsgBox(this, AlertType.ERROR,
-                    "Problème inattendu lors de la modification de l'élève!");
+                    "Problème inattendu lors de la modification du produit!");
         }
         close();
     }

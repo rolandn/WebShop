@@ -15,8 +15,7 @@
                     <items>
                         <MenuItem text="Lister les bières" onAction="#MListerBiere"/>
                         <MenuItem text="Ajouter une bière" onAction="#MAjouterBiere"/>
-                        <MenuItem text="Modifier la quantité en stock" />
-                        <MenuItem text="Archiver/désarchiver une bière" />
+                        <MenuItem text="Modifier la quantité en stock" onAction="#BModifierProduit"/>
                     </items>
                 </Menu>
 
