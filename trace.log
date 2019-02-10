@@ -59,3 +59,7 @@
 07-02-2019 19:18 -- classe AjouterBiere -- méthode BAjouterBiere() -- null
 07-02-2019 19:28 -- classe AjouterBiere -- méthode BAjouterBiere() -- null
 07-02-2019 19:40 -- classe AjouterBiere -- méthode BAjouterBiere() -- For input string: ""
+10-02-2019 16:26 -- classe ListerBiere -- méthode ListerBiere() -- Incorrect syntax near the keyword 'by'.
+10-02-2019 16:27 -- classe ListerBiere -- méthode ListerBiere() -- Incorrect syntax near the keyword 'by'.
+10-02-2019 16:27 -- classe ListerBiere -- méthode ListerBiere() -- Incorrect syntax near the keyword 'by'.
+10-02-2019 16:29 -- classe ListerBiere -- méthode ListerBiere() -- Incorrect syntax near the keyword 'by'.
