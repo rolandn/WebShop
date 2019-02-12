@@ -76,8 +76,8 @@ public class FenetrePrincipaleJava extends Application
     private void MListerBiere(ActionEvent event) {new ListerBiere(Fenetre); }
     @FXML
     private void MAjouterBiere(ActionEvent event){new AjouterBiere(Fenetre); }
-//    @FXML
-//    private void MModifierStockBiere(ActionEvent event) {new ModifierStock(Fenetre); }
+    @FXML
+    private void BModifierProduit(ActionEvent event) {new ModifierProduit(Fenetre); }
 //    @FXML
 //    private void MArchiveBiere(ActionEvent event) {new ArchiverBiere (Fenetre); }
 

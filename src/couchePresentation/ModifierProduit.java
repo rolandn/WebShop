@@ -20,7 +20,7 @@ public class ModifierProduit extends BaseFenetre
 {
     @FXML private TextField TFNumArticle;
     @FXML private TextField TFNom;
-    @FXML private ComboBox<Boolean> CBArchive;
+    @FXML private ComboBox CBArchive;
     @FXML private TextField TFquantiteStock;
     @FXML private TextField TFNomImage;
     @FXML private Button BChargerImage;
@@ -38,7 +38,7 @@ public class ModifierProduit extends BaseFenetre
     public ModifierProduit(Stage fenParent)
     {
 // créer la fenêtre
-        super(fenParent, "ModifierProduitVue.xml", "Modifier le stock ou supprimer un article", 580, 300);
+        super(fenParent, "ModifierProduitVue.xml", "Modifier le stock ou supprimer un article", 800, 550);
 // Ajoute dans la boîte combo CBproduit
 
 
@@ -100,7 +100,7 @@ public class ModifierProduit extends BaseFenetre
         CBArchive.setValue(Boolean.valueOf(Boolean.toString(produit.getActive())));
 
         TFNomImage.setText(produit.getNomImage());
-        IVImage.setImage(new Image("file:imgs/imgseleves/" + TFNomImage.getText()));
+        IVImage.setImage(new Image("file:imgs/" + TFNomImage.getText()));
     }
     /**
      * Méthode exécutée quand on clique sur le bouton Modifier
@@ -110,11 +110,16 @@ public class ModifierProduit extends BaseFenetre
     {
         try
         {
+
             Produit produit = new Produit();
-            produit.setNumArticle(CBProduit.getSelectionModel().getSelectedItem().getNumArticle());
-            produit.setQuantiteStock(Integer.parseInt(TFquantiteStock.getText()));
-            produit.setActive(CBArchive.getValue());
+           // produit.setActive(Boolean.parseBoolean(String.valueOf(CBArchive.getSelectionModel())));
+            produit.setActive(("true".equals(CBArchive.getValue())));
             produit.setNomImage(TFNomImage.getText());
+            produit.setQuantiteStock(Integer.parseInt(TFquantiteStock.getText()));
+            produit.setNumArticle(CBProduit.getSelectionModel().getSelectedItem().getNumArticle());
+
+
+
 
             if (FabriqueDAO.getInstance().getInsProduitDAO().Modifier(produit) == false)
                 new MsgBox(this, AlertType.INFORMATION, "La modification n'a pas eu lieu!");
@@ -125,7 +130,7 @@ public class ModifierProduit extends BaseFenetre
                 if (FichierSrc != null)
                 {
                     File FichierDst = new File(System.getProperty("user.dir") +
-                            "/imgs/imgseleves/" + FichierSrc.getName());
+                            "/imgs/" + FichierSrc.getName());
                     Files.copy(FichierSrc.toPath(), FichierDst.toPath(), REPLACE_EXISTING);
                 }
             }

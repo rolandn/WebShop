@@ -53,35 +53,8 @@ public class Alcool extends Produit {
     }
 
 
-    /**
-     * Méthode "SET" pour les variables venant de Produit
-     */
 
-    public int setNumArticle(int numArticle){
-        NumArticle = numArticle;
-        return numArticle;
-    }
 
-    public void setNom(String nom) {Nom = nom;}
-
-    public void setNomImage(String nomImage){
-        NomImage = nomImage;
-    }
-
-    public int setPrix(int prix){
-        Prix = prix;
-        return prix;
-    }
-
-    public boolean setActive (boolean active) {
-        Active = active;
-        return active;
-    }
-
-    public int setQuantiteStock(int quantiteStock){
-        QuantiteStock = quantiteStock;
-        return quantiteStock;
-    }
 
 
 

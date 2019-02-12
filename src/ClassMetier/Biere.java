@@ -65,28 +65,8 @@ public class Biere extends Produit {
      * Méthode "SET" pour les variables venant de Produit
      */
 
-    public int setNumArticle(int numArticle){
-        NumArticle = numArticle;
-        return numArticle;
-    }
-
-    public void setNom(String nom) {Nom = nom;}
-
-    public void setNomImage(String nomImage){
-        NomImage = nomImage;
-    }
-
-    public int setPrix(int prix){
-        Prix = prix;
-        return prix;
-    }
 
 
-
-    public int setQuantiteStock(int quantiteStock){
-        QuantiteStock = quantiteStock;
-        return quantiteStock;
-    }
 
 
     public void setAlcool(String text) {

@@ -38,11 +38,16 @@ public class ProduitDAO extends BaseDAO<Produit>
     public boolean Modifier(Produit obj) throws ExeceptionAccessBD {
 
         try {
-            PreparedStatement sqlCmd = SqlConn.prepareCall("UPDATE produit SET quantiteStock = ?, Active = ? WHERE NumArticle = ?");
+            PreparedStatement sqlCmd = SqlConn.prepareCall("UPDATE produit " +
+                                                                          "set Active = ?, " +
+                                                                          "nomImage = ?, " +
+                                                                          "quantiteStock = ? " +
+                                                                          "WHERE NumArticle = ? ");
 
-            sqlCmd.setInt(1,obj.getQuantiteStock());
-            sqlCmd.setBoolean(2, obj.getActive());
-            sqlCmd.setInt(3,obj.getNumArticle());
+            sqlCmd.setBoolean(1, obj.getActive());
+            sqlCmd.setString(2, obj.getNomImage());
+            sqlCmd.setInt(3,obj.getQuantiteStock());
+            sqlCmd.setInt(4, obj.getNumArticle());
 
             return (sqlCmd.executeUpdate() == 0)? false : true;
 

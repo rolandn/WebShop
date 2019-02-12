@@ -26,22 +26,21 @@
                         <Label text="Quantité en stock : " GridPane.columnIndex="0" GridPane.rowIndex="4" />
                         <TextField fx:id="TFquantiteStock" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                        <Label text="Produit supprimé ?: " GridPane.columnIndex="0" GridPane.rowIndex="(" />
+                        <Label text="Produit actif ?: " GridPane.columnIndex="0" GridPane.rowIndex="5" />
                         <ComboBox fx:id="CBArchive" GridPane.columnIndex="1" GridPane.rowIndex="5">
 
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="1" />
-                                    <String fx:value="2" />
+                                    <String fx:value="true" />
+                                    <String fx:value="false" />
                                 </FXCollections>
                             </items>
-                            89
-                            <value>
+                         <!--   <value>
                                 <String fx:value="1" />
-                            </value>
+                            </value>  -->
                         </ComboBox>
 
-                        <Label text="Photo de l'élève: " GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                        <Label text="Photo du produit: " GridPane.columnIndex="0" GridPane.rowIndex="7" />
                         <HBox GridPane.columnIndex="1" GridPane.rowIndex="7" spacing="15">
                             <children>
                                 <TextField fx:id="TFNomImage" text="aucuneimage.jpg" disable="true"
@@ -54,7 +53,7 @@
                 </GridPane>
                 <ImageView fx:id="IVImage" GridPane.columnIndex="1" GridPane.rowIndex="5">
                     <image>
-                        <Image url="file:imgs/imgseleves/aucuneimage.jpg" />
+                        <Image url="file:imgs/aucuneimage.jpg" />
                     </image>
                     <HBox.margin>
                         <Insets top="35" right="0" bottom="0" left="0" />
@@ -72,9 +71,8 @@
         </Separator>
         <HBox spacing="15">
             <children>
-                <Button fx:id="BAjouter" prefWidth="80" prefHeight="20" onAction="#BModifierEleve"
-                        text="Modifier" />
-                <Button fx:id="BFermer" prefWidth="80" prefHeight="20" onAction="#BFermer" text="Fermer" />
+                <Button fx:id="BAjouter" prefWidth="200" prefHeight="25" onAction="#BModifierProduit" text="Modifier" />
+                <Button fx:id="BFermer" prefWidth="200" prefHeight="25" onAction="#BFermer" text="Fermer" />
             </children>
             <VBox.margin>
                 <Insets top="10" right="0" bottom="12" left="400" />

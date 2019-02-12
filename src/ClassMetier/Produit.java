@@ -39,8 +39,9 @@ public class Produit
 
     }
 
-    public Produit() {
 
+    public Produit() {
+        super();
     }
 
     /**
@@ -51,18 +52,15 @@ public class Produit
         return NumArticle;
     }
 
-    public int setNumArticle(int numArticle) {
-        return NumArticle;
+    public void setNumArticle(int numArticle) {
+        NumArticle = numArticle;
     }
 
     public boolean getActive() {
         return Active;
     }
 
-    public boolean setActive(boolean active) {
-
-        return active;
-    }
+    public void setActive(Boolean active) {this.Active = active;}
 
     public String getNom() {
         return Nom;
@@ -73,6 +71,10 @@ public class Produit
     public String getNomImage() {
         return NomImage;
     }
+
+    public void setNom(String nom){Nom = nom;}
+
+    public void setPrix(Integer prix) {Prix = prix;}
 
     public void setNomImage(String nomImage){NomImage = nomImage;};
 
