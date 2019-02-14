@@ -24,11 +24,10 @@ public class ListerAlcool extends BaseFenetre{
      * Constructeur : il crée la fenêtre
      * @param fenParent : l'objet Stage représentant la fenêtre parent
      */
-    public ListerAlcool(Stage fenParent)
-    {
+    public ListerAlcool(Stage fenParent) throws ExeceptionAccessBD {
             // créer la fenêtre
-        super(fenParent, "ListerAlcoolVue.xml", "Lister les alcools", 475, 300);
-            // ajouter la liste des professeurs à la table TVAlcool
+        super(fenParent, "ListerAlcool.xml", "Lister les alcools", 1700, 700);
+            // ajouter la liste des alcool à la table TVAlcool
 
         TVAlcool.itemsProperty().setValue(FXCollections.observableArrayList(
                 FabriqueDAO.getInstance().getInstAlcoolDAO().ListerTous()));
@@ -43,9 +42,9 @@ public class ListerAlcool extends BaseFenetre{
                                                                         nouvAlcool) ->
         {
             if (nouvAlcool != null)
-                IVImage.setImage(new Image("file:imgs/imgsprofs/" + nouvAlcool.getNomImage()));
+                IVImage.setImage(new Image("file:imgs/" + nouvAlcool.getNomImage()));
         });
-// sélectionner le 1er prof dans la table TVProfs
+// sélectionner le 1er prof dans la table TVAlcool
         TVAlcool.getSelectionModel().selectFirst();
 // afficher la fenêtre
         showAndWait();

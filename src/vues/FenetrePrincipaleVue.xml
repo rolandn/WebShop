@@ -22,7 +22,7 @@
                 <Menu text="Alcools">
                     <items>
                         <MenuItem text="Lister les alcools" onAction="#MListerAlcool"/>
-                        <MenuItem text="Ajouter une alcool" />
+                        <MenuItem text="Ajouter un alcool" onAction="#MAjouterAlcool" />
                         <MenuItem text="Modifier la quantité en stock" />
                         <MenuItem text="Archiver/désarchiver un alcool" />
                     </items>

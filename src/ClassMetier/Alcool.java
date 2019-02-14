@@ -27,25 +27,38 @@ public class Alcool extends Produit {
     }
 
 
-    public int getDegreAlcool() {
-        return DegreAlcool;
+
+    public Alcool(int anInt, int anInt1, String string, String string1, byte aByte) {
     }
 
-    public int setDegreAlcool(int i) {
-        DegreAlcool = i;
-        return i;
+    /*
+    *    Fonctions GET
+   */
+
+    public int getDegreAlcool() {
+        return DegreAlcool;
     }
 
     public String getGout() {
         return Gout;
     }
 
-    public void setGout(String g) {
-        Gout = g;
-    }
-
     public String getProvenance() {
         return Provenance;
+    }
+
+
+    /*
+     *    Fonctions SET
+     */
+
+    public int setDegreAlcool(int i) {
+        DegreAlcool = i;
+        return i;
+    }
+
+    public void setGout(String g) {
+        Gout = g;
     }
 
     public void setProvenance(String p) {

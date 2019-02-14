@@ -81,8 +81,7 @@
 
         <HBox spacing="15">
             <children>
-                <Button fx:id="MAjouter" prefWidth="180" prefHeight="20" onAction="#MAjouterBiere"
-                        text="Ajouter" />
+                <Button fx:id="MAjouter" prefWidth="180" prefHeight="20" onAction="#MAjouterBiere" text="Ajouter" />
                 <Button fx:id="BFermer" prefWidth="180" prefHeight="20" onAction="#BFermer" text="Fermer" />
             </children>
 

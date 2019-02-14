@@ -93,3 +93,13 @@
 12-02-2019 20:41 -- classe ModifierProduit -- méthode BModifierProduit() -- java.lang.String cannot be cast to java.lang.Boolean
 12-02-2019 20:42 -- classe ModifierProduit -- méthode BModifierProduit() -- java.lang.String cannot be cast to java.lang.Boolean
 12-02-2019 20:45 -- classe ModifierProduit -- méthode BModifierProduit() -- java.lang.String cannot be cast to java.lang.Boolean
+14-02-2019 20:24 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- The value is not set for the parameter number 6.
+14-02-2019 20:25 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- The value is not set for the parameter number 6.
+14-02-2019 20:27 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- The value is not set for the parameter number 6.
+14-02-2019 20:29 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- The value is not set for the parameter number 6.
+14-02-2019 20:31 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- Conversion failed when converting the nvarchar value 'londre' to data type bit.
+14-02-2019 20:33 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- Conversion failed when converting the nvarchar value 'londre' to data type bit.
+14-02-2019 20:34 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- Column name or number of supplied values does not match table definition.
+14-02-2019 20:35 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- Column name or number of supplied values does not match table definition.
+14-02-2019 20:36 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- Column name or number of supplied values does not match table definition.
+14-02-2019 20:37 -- classe AjouterAlcool -- méthode BAjouterAlcool() -- Column name or number of supplied values does not match table definition.

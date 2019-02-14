@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.cell.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <TableView fx:id="TVAlcool" prefWidth="3000" prefHeight ="3000" AnchorPane.topAnchor="15"
+                   AnchorPane.leftAnchor="10">
+            <columns>
+
+                <TableColumn fx:id="TCNumArticle" text="N° article" minWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="NumArticle" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                    <TableColumn fx:id="TCNom" text="Nom" minWidth="260">
+                        <cellValueFactory><PropertyValueFactory property="Nom" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                <TableColumn fx:id="TCPrix" text="Prix" minWidth="160">
+                    <cellValueFactory><PropertyValueFactory property="Prix" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="TCQuantiteStock" text="Quantite en Stock" minWidth="300">
+                    <cellValueFactory><PropertyValueFactory property="QuantiteStock" />
+                    </cellValueFactory>
+                </TableColumn>
+
+
+                <TableColumn fx:id="TCGout" text="Goût" minWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="Gout" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="TCProvenance" text="Provenance" minWidth="200">
+                    <cellValueFactory><PropertyValueFactory property="Provenance" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="TCDegreAlcool" text="Degré d'alcool" minWidth="260">
+                    <cellValueFactory><PropertyValueFactory property="DegreAlcool" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="TCActive" text="Produit actif ?" minWidth="260">
+                    <cellValueFactory><PropertyValueFactory property="Active" />
+                    </cellValueFactory>
+                </TableColumn>
+
+            </columns>
+        </TableView>
+        <ImageView fx:id="IVImage" AnchorPane.topAnchor="55" AnchorPane.rightAnchor="15" />
+        <Button fx:id="BFermer" prefWidth="250" prefHeight="20" onAction="#BFermer" text="Fermer"
+                AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="15" />
+    </children>
+</AnchorPane>

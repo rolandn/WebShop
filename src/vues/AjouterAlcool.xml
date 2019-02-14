@@ -15,39 +15,28 @@
                     <children>
                         <Label text="NumArticle: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
                         <TextField fx:id="TFNumArticle" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
                         <Label text="Nom: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
                         <TextField fx:id="TFNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Prix : " GridPane.columnIndex="0"
-                               GridPane.rowIndex="2" prefWidth="160" />
+
+                        <Label text="Prix : " GridPane.columnIndex="0" GridPane.rowIndex="2" prefWidth="160" />
                         <TextField fx:id="TFPrix" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="70" />
 
                         <Label text="Quantité en stock: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
                         <TextField fx:id="TFQuantiteStock" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                        <Label text="Goût: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                        <TextField fx:id="TFGout" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label text="Goût: " GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <TextField fx:id="TFGout" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                        <Label text="Récipient: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                        <TextField fx:id="TFRecipient" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label text="Provenance: " GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                        <TextField fx:id="TFProvenance" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 
+                        <Label text="Degré d'alcool: " GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                        <TextField fx:id="TFDegre" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
-                        <ComboBox fx:id="CBAlcool" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="1" />
-                                    <String fx:value="0" />
-                                </FXCollections>
-                            </items>
-                            <value>
-                                <String fx:value="1" />
-                            </value>
-                        </ComboBox>
+                        <Label text="Photo: " GridPane.columnIndex="0" GridPane.rowIndex="8" />
 
-
-
-                        <Label text="Photo: " GridPane.columnIndex="0" GridPane.rowIndex="5" />
-
-                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="5" spacing="15">
+                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="8" spacing="15">
                             <children>
                                 <TextField fx:id="TFNomImage" text="aucuneimage.jpg" disable="true"
                                            style="-fx-opacity: 1.0" />
@@ -80,13 +69,13 @@
 
         <HBox spacing="15">
             <children>
-                <Button fx:id="BAjouter" prefWidth="80" prefHeight="20" onAction="#BAjouterEleve"
+                <Button fx:id="BAjouter" prefWidth="260" prefHeight="20" onAction="#MAjouterAlcool"
                         text="Ajouter" />
-                <Button fx:id="BFermer" prefWidth="80" prefHeight="20" onAction="#BFermer" text="Fermer" />
+                <Button fx:id="BFermer" prefWidth="260" prefHeight="20" onAction="#BFermer" text="Fermer" />
             </children>
 
             <VBox.margin>
-                <Insets top="10" right="0" bottom="12" left="400" />
+                <Insets top="10" right="50" bottom="12" left="400" />
             </VBox.margin>
         </HBox>
     </children>

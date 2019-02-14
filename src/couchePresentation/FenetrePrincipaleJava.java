@@ -87,12 +87,11 @@ public class FenetrePrincipaleJava extends Application
      *                        ALCOOL
      */
     @FXML
-    private void MListerAlcool(ActionEvent event)
-    {
+    private void MListerAlcool(ActionEvent event) throws ExeceptionAccessBD {
         new ListerAlcool(Fenetre);
     }
-//    @FXML
-//    private void MAjouterAlcool(ActionEvent event) {new AjouterAlcool(Fenetre); }
+    @FXML
+    private void MAjouterAlcool(ActionEvent event) {new AjouterAlcool(Fenetre); }
 //    @FXML
 //    private void MModifierStockAlcool(ActionEvent event) {new ModifierStockAlcool(Fenetre); }
 //    @FXML

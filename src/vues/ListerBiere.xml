@@ -10,7 +10,8 @@
                    AnchorPane.leftAnchor="10">
             <columns>
                 <TableColumn fx:id="TCNumArticle" text="Numéro d'article" minWidth="5">
-                    <cellValueFactory><PropertyValueFactory property="NumArticle" />
+                    <cellValueFactory>
+                        <PropertyValueFactory property="NumArticle" />
                     </cellValueFactory>
                 </TableColumn>
 
@@ -20,17 +21,20 @@
                 </TableColumn>  -->
 
                 <TableColumn fx:id="TCGout" text="Goût" minWidth="120">
-                    <cellValueFactory><PropertyValueFactory property="Gout" />
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Gout" />
                     </cellValueFactory>
                 </TableColumn>
 
                 <TableColumn fx:id="TCRecipient" text="Recipient" minWidth="160">
-                    <cellValueFactory><PropertyValueFactory property="Recipient" />
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Recipient" />
                     </cellValueFactory>
                 </TableColumn>
 
                 <TableColumn fx:id="TCAlcolise" text="Alcolisé ?" minWidth="160">
-                    <cellValueFactory><PropertyValueFactory property="Alcolise" />
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Alcolise" />
                     </cellValueFactory>
                 </TableColumn>
 

@@ -152,15 +152,22 @@ public class BiereDAO extends BaseDAO<Biere>
         try
         {
             PreparedStatement sqlCmd = SqlConn.prepareCall(
-                    "select NumArticle, Gout, Recipient, Alcolise " +
-                            " from biere " +
-                            " order by NumArticle asc");
+                    "select produit.NumArticle, nom, nomImage, prix, quantiteStock, produit.Active, " +
+                            "Alcolise, Gout, Recipient "+
+                            " from produit, biere where produit.NumArticle = biere.NumArticle" +
+                            " order by produit.NumArticle asc");
             ResultSet sqlRes = sqlCmd.executeQuery();
             while (sqlRes.next() == true)
-                liste.add(new Biere(sqlRes.getInt(1),
-                        sqlRes.getString(2),
-                        sqlRes.getString(3),
-                        sqlRes.getBoolean(4)));
+                liste.add(new Biere(
+                        sqlRes.getInt(1),       // numArticle
+                        sqlRes.getString(2),    // nom
+                        sqlRes.getString(3),    // nomImage
+                        sqlRes.getInt(4),    // prix
+                        sqlRes.getInt(5),    // quantiteStock
+                        sqlRes.getBoolean(6), // Active
+                        sqlRes.getBoolean(7),   // Alcool
+                        sqlRes.getString(8),    // gout
+                        sqlRes.getString(9)));  // recipient
             sqlRes.close();
         }
         catch(Exception e)
